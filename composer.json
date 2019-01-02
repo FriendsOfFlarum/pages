@@ -1,0 +1,44 @@
+{
+  "name": "fof/pages",
+  "description": "Create custom pages with Flarum",
+  "keywords": [
+    "flarum"
+  ],
+  "type": "flarum-extension",
+  "license": "MIT",
+  "require": {
+    "flarum/core": "^0.1.0-beta.8"
+  },
+  "authors": [
+    {
+        "name": "Sajjad Hashemian",
+        "email": "wolaws@gmail.com"
+    },
+    {
+      "name": "David Sevilla Martín",
+      "email": "david.s@redevs.org",
+      "role": "Developer"
+    }
+  ],
+  "replace": {
+    "sijad/flarum-ext-pages": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "FoF\\Pages\\": "src/"
+    }
+  },
+  "extra": {
+    "flarum-extension": {
+      "title": "FoF Pages",
+      "icon": {
+        "name": "far fa-file-alt",
+        "backgroundColor": "#e74c3c",
+        "color": "#fff"
+      }
+    },
+    "flagrow": {
+      "discuss": ""
+    }
+  }
+}

@@ -1,0 +1,49 @@
+fof-pages:
+
+  ##
+  # UNIQUE KEYS - The following keys are used in only one location each.
+  ##
+
+  # Tłumaczenia w tym obszarze są używane przez interfejs administratora.
+  admin:
+
+    # These strings are used in the Edit Page modal dialog.
+    edit_page:
+      content_label: => fof-pages.ref.content
+      content_placeholder: => fof-pages.ref.content
+      delete_page_button: Usuń Stronę
+      delete_page_confirmation: "Czy na pewno chcesz usunąć stronę?"
+      hidden_label: Zapisz Szkic
+      html_label: Włącz Html
+      slug_label: => fof-pages.ref.slug
+      slug_placeholder: => fof-pages.ref.slug
+      submit_button: => core.ref.save_changes
+      title: => fof-pages.ref.create_page
+      title_label: => fof-pages.ref.title
+      title_placeholder: => fof-pages.ref.title
+      url_label: => fof-pages.ref.url
+      url_placeholder: => fof-pages.ref.url
+
+    # These strings are used in the pages page.
+    nav:
+      pages_button: => fof-pages.ref.pages
+      pages_text: Stwórz statyczną strone.
+
+    # Strings in this namespace are referenced by two or more unique keys.
+    pages:
+      about_text: Stwórz i zarządzaj statyczną stroną.
+      create_button: => fof-pages.ref.create_page
+
+    # These strings are used in the pages list.
+    pages_list:
+      empty_text: Wygląda na to, że nie ma tu żadnych stron.
+      title: => fof-pages.ref.title
+
+  # These strings are used in the navigation bar.
+  ref:
+    content: Zawartość
+    create_page: Stwórz stronę
+    pages: Strony
+    slug: Slug
+    title: Tytuł
+    url: Url

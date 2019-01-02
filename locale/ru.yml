@@ -1,0 +1,49 @@
+fof-pages:
+
+  ##
+  # UNIQUE KEYS - The following keys are used in only one location each.
+  ##
+
+  # Translations in this namespace are used by the admin interface.
+  admin:
+
+    # These strings are used in the Edit Page modal dialog.
+    edit_page:
+      content_label: => fof-pages.ref.content
+      content_placeholder: => fof-pages.ref.content
+      delete_page_button: Удалить страницу
+      delete_page_confirmation: "Вы уверены, что хотите удалить эту страницу?"
+      hidden_label: Сохранить как черновик
+      html_label: Включить Html
+      slug_label: => fof-pages.ref.slug
+      slug_placeholder: => fof-pages.ref.slug
+      submit_button: => core.ref.save_changes
+      title: => fof-pages.ref.create_page
+      title_label: => fof-pages.ref.title
+      title_placeholder: => fof-pages.ref.title
+      url_label: => fof-pages.ref.url
+      url_placeholder: => fof-pages.ref.url
+
+    # These strings are used in the pages page.
+    nav:
+      pages_button: => fof-pages.ref.pages
+      pages_text: Создание пользовательских статических страниц.
+
+    # Strings in this namespace are referenced by two or more unique keys.
+    pages:
+      about_text: Создание и управление статическими страницами.
+      create_button: => fof-pages.ref.create_page
+
+    # These strings are used in the pages list.
+    pages_list:
+      empty_text: Похоже, что страницы здесь нет.
+      title: => fof-pages.ref.title
+
+  # These strings are used in the navigation bar.
+  ref:
+    content: Контент
+    create_page: Создать страницу
+    pages: Страницы
+    slug: URL
+    title: Заголовок
+    url: Url

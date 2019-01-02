@@ -1,0 +1,35 @@
+<?php
+
+namespace FoF\Pages;
+
+use Flarum\Extend;
+use Illuminate\Contracts\Events\Dispatcher;
+use FoF\Pages\Api\Controller;
+
+return [
+    new Extend\Locales(__DIR__.'/locale'),
+
+    (new Extend\Frontend('admin'))
+        ->css(__DIR__.'/less/admin.less')
+        ->js(__DIR__.'/js/dist/admin.js'),
+
+    (new Extend\Frontend('forum'))
+        ->css(__DIR__.'/less/forum.less')
+        ->js(__DIR__.'/js/dist/forum.js')
+        ->route('/pages/home', 'pages.home')
+        ->route('/p/{id:\d+(?:-[^/]*)?}', 'pages.page')
+        ->content(Content\AddHomePageId::class),
+
+    (new Extend\Routes('api'))
+        ->get('/pages', 'pages.index', Controller\ListPagesController::class)
+        ->post('/pages', 'pages.create', Controller\CreatePageController::class)
+        ->get('/pages/{id}', 'pages.show', Controller\ShowPageController::class)
+        ->patch('/pages/{id}', 'pages.update', Controller\UpdatePageController::class)
+        ->delete('/pages/{id}', 'pages.delete', Controller\DeletePageController::class),
+
+    function () {
+        app()->instance('path.pages', base_path() . DIRECTORY_SEPARATOR . 'pages');
+
+        Page::setFormatter(app()->make('flarum.formatter'));
+    }
+];
