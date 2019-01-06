@@ -31,8 +31,8 @@ composer update fof/pages
 
 ### Links
 
-- [Packagist](https://packagist.org/packages/fof/prevent-necrobumping)
-- [GitHub](https://github.com/FriendsOfFlarum/prevent-necrobumping)
+- [Packagist](https://packagist.org/packages/fof/pages)
+- [GitHub](https://github.com/FriendsOfFlarum/pages)
 - [Sijad's Pages](https://github.com/sijad/flarum-ext-pages)
 
 An extension by [FriendsOfFlarum](https://github.com/FriendsOfFlarum), revival commissioned by [webdeveloper.com](https://webdeveloper.com).
