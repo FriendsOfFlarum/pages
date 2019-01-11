@@ -1,0 +1,50 @@
+fof-pages:
+
+  ##
+  # UNIQUE KEYS - The following keys are used in only one location each.
+  ##
+
+  # Translations in this namespace are used by the admin interface.
+  admin:
+
+    # These strings are used in the Edit Page modal dialog.
+    edit_page:
+      content_label: => fof-pages.ref.content
+      content_placeholder: => fof-pages.ref.content
+      delete_page_button: حذف الصفحة
+      delete_page_confirmation: "هل أنت متأكد أنك تريد حذف هذه الصفحة؟"
+      hidden_label: حفظ كمسودة
+      html_label: السماح لوسوم لغة التمييز الترابطية
+      set_as_home_page_confirmation: "هل أنت متأكد من أنك تريد جعل هذه الصفحة الصفحة الرئيسية؟"
+      slug_label: => fof-pages.ref.slug
+      slug_placeholder: => fof-pages.ref.slug
+      submit_button: => core.ref.save_changes
+      title: => fof-pages.ref.create_page
+      title_label: => fof-pages.ref.title
+      title_placeholder: => fof-pages.ref.title
+      url_label: => fof-pages.ref.url
+      url_placeholder: => fof-pages.ref.url
+
+    # These strings are used in the pages page.
+    nav:
+      pages_button: => fof-pages.ref.pages
+      pages_text: إنشاء صفحات خاصة وثابتة.
+
+    # Strings in this namespace are referenced by two or more unique keys.
+    pages:
+      about_text: إنشاء وإدارة الصفحات الثابتة.
+      create_button: => fof-pages.ref.create_page
+
+    # These strings are used in the pages list.
+    pages_list:
+      empty_text: يبدو أنه لا توجد أي صفحة هنا
+      title: => fof-pages.ref.title
+
+  # These strings are used in the navigation bar.
+  ref:
+    content: المحتوى
+    create_page: إنشاء صفحة جديدة
+    pages: صفحات
+    slug: سبيكة أو رمز الرابط لعنوان الصفحة
+    title: عنوان
+    url: رابط
