@@ -1,12 +1,22 @@
 <?php
 
+/*
+ * This file is part of fof/pages.
+ *
+ * Copyright (c) 2019 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace FoF\Pages\Util;
 
 use FoF\Pages\Page;
 
 class Html
 {
-    public static function render($html, Page $page) {
+    public static function render($html, Page $page)
+    {
         if (strpos($html, '@include(') !== false) {
             $html = preg_replace_callback(
                 '/\@include\([\"\']?([\.\/\w\s]+)[\"\']?\)/mi',
@@ -21,13 +31,16 @@ class Html
                     if (!empty($path) && strpos($path, $base) === 0 && is_readable($path)) {
                         $view = app('view')->file($path);
                         $view->page = $page;
+
                         return $view->render();
                     }
+
                     return $matches[0];
                 },
                 $html
             );
         }
+
         return $html;
     }
 }

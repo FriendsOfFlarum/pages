@@ -1,11 +1,20 @@
 <?php
 
+/*
+ * This file is part of fof/pages.
+ *
+ * Copyright (c) 2019 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace FoF\Pages\Api\Controller;
 
 use Flarum\Api\Controller\AbstractDeleteController;
+use FoF\Pages\Command\DeletePage;
 use Illuminate\Contracts\Bus\Dispatcher;
 use Psr\Http\Message\ServerRequestInterface;
-use FoF\Pages\Command\DeletePage;
 
 class DeletePageController extends AbstractDeleteController
 {

@@ -1,9 +1,17 @@
 <?php
 
+/*
+ * This file is part of fof/pages.
+ *
+ * Copyright (c) 2019 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace FoF\Pages;
 
 use Flarum\Extend;
-use Illuminate\Contracts\Events\Dispatcher;
 use FoF\Pages\Api\Controller;
 
 return [
@@ -28,8 +36,8 @@ return [
         ->delete('/pages/{id}', 'pages.delete', Controller\DeletePageController::class),
 
     function () {
-        app()->instance('path.pages', base_path() . DIRECTORY_SEPARATOR . 'pages');
+        app()->instance('path.pages', base_path().DIRECTORY_SEPARATOR.'pages');
 
         Page::setFormatter(app()->make('flarum.formatter'));
-    }
+    },
 ];

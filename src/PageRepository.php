@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of fof/pages.
+ *
+ * Copyright (c) 2019 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace FoF\Pages;
 
 use Flarum\User\User;
@@ -23,21 +32,23 @@ class PageRepository
      * @param int  $id
      * @param User $user
      *
-     * @return Page
-     *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return Page
      */
     public function findOrFail($id, User $user = null)
     {
         $query = Page::where('id', $id);
-        return $this->scopeVisibleTo($query, $user)->firstOrFail();;
+
+        return $this->scopeVisibleTo($query, $user)->firstOrFail();
     }
 
     /**
      * Scope a query to only include records that are visible to a user.
      *
      * @param Builder $query
-     * @param User $user
+     * @param User    $user
+     *
      * @return Builder
      */
     protected function scopeVisibleTo(Builder $query, User $user = null)

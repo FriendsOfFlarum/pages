@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of fof/pages.
+ *
+ * Copyright (c) 2019 FriendsOfFlarum.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace FoF\Pages;
 
 use Flarum\Database\AbstractModel;
@@ -16,9 +25,9 @@ class Page extends AbstractModel
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
+        'id'        => 'integer',
         'is_hidden' => 'boolean',
-        'is_html' => 'boolean',
+        'is_html'   => 'boolean',
     ];
 
     /**
@@ -98,6 +107,7 @@ class Page extends AbstractModel
         if ($this->is_html) {
             return $this->content;
         }
+
         return static::$formatter->render($this->attributes['content'], $this);
     }
 
