@@ -13,7 +13,6 @@ namespace FoF\Pages;
 
 use Flarum\Extend;
 use Flarum\Foundation\Application;
-use Flarum\Http\RouteHandlerFactory;
 use FoF\Pages\Api\Controller;
 use Illuminate\Contracts\View\Factory;
 

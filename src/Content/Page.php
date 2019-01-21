@@ -38,9 +38,9 @@ class Page
     protected $view;
 
     /**
-     * @param Client $api
+     * @param Client       $api
      * @param UrlGenerator $url
-     * @param Factory $view
+     * @param Factory      $view
      */
     public function __construct(Client $api, UrlGenerator $url, Factory $view)
     {
@@ -69,7 +69,7 @@ class Page
     /**
      * Get the result of an API request to list discussions.
      *
-     * @param User $actor
+     * @param User  $actor
      * @param array $params
      *
      * @return object
