@@ -11,9 +11,19 @@
 
 namespace FoF\Pages;
 
+use Carbon\Carbon;
 use Flarum\Database\AbstractModel;
 use Flarum\Formatter\Formatter;
+use Flarum\Post\Post;
 
+/**
+ * @property string title
+ * @property string slug
+ * @property Carbon time
+ * @property string content
+ * @property bool is_hidden
+ * @property bool is_html
+ */
 class Page extends AbstractModel
 {
     /**
@@ -94,7 +104,7 @@ class Page extends AbstractModel
      */
     public function setContentAttribute($value)
     {
-        $this->attributes['content'] = $value ? static::$formatter->parse($value, $this) : null;
+        $this->attributes['content'] = $value ? static::$formatter->parse($value, new Post()) : null;
     }
 
     /**
@@ -108,7 +118,7 @@ class Page extends AbstractModel
             return $this->content;
         }
 
-        return static::$formatter->render($this->attributes['content'], $this);
+        return static::$formatter->render($this->attributes['content'], new Post());
     }
 
     /**
