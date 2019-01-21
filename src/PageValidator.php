@@ -25,6 +25,7 @@ class PageValidator extends AbstractValidator
         ],
         'slug' => [
             'required',
+            'unique:pages,slug',
             'max:200',
         ],
         'content' => [

@@ -12,20 +12,23 @@
 namespace FoF\Pages;
 
 use Flarum\Extend;
+use Flarum\Foundation\Application;
+use Flarum\Http\RouteHandlerFactory;
 use FoF\Pages\Api\Controller;
+use Illuminate\Contracts\View\Factory;
 
 return [
-    new Extend\Locales(__DIR__.'/locale'),
+    new Extend\Locales(__DIR__.'/resources/locale'),
 
     (new Extend\Frontend('admin'))
-        ->css(__DIR__.'/less/admin.less')
+        ->css(__DIR__.'/resources/less/admin.less')
         ->js(__DIR__.'/js/dist/admin.js'),
 
     (new Extend\Frontend('forum'))
-        ->css(__DIR__.'/less/forum.less')
+        ->css(__DIR__.'/resources/less/forum.less')
         ->js(__DIR__.'/js/dist/forum.js')
         ->route('/pages/home', 'pages.home')
-        ->route('/p/{id:\d+(?:-[^/]*)?}', 'pages.page')
+        ->route('/p/{id:[\d\S]+(?:-[^/]*)?}', 'pages.page', Content\Page::class)
         ->content(Content\AddHomePageId::class),
 
     (new Extend\Routes('api'))
@@ -35,9 +38,11 @@ return [
         ->patch('/pages/{id}', 'pages.update', Controller\UpdatePageController::class)
         ->delete('/pages/{id}', 'pages.delete', Controller\DeletePageController::class),
 
-    function () {
-        app()->instance('path.pages', base_path().DIRECTORY_SEPARATOR.'pages');
+    function (Application $app, Factory $views) {
+        $app->instance('path.pages', base_path().DIRECTORY_SEPARATOR.'pages');
 
-        Page::setFormatter(app()->make('flarum.formatter'));
+        Page::setFormatter($app['flarum.formatter']);
+
+        $views->addNamespace('fof-pages', __DIR__.'/resources/views');
     },
 ];
