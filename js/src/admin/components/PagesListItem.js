@@ -28,6 +28,7 @@ export default class PagesListItem extends Component {
                             className: 'Button Button--page-edit',
                             icon: 'fas fa-home',
                             onclick: this.setAsHomePage.bind(this),
+                            disabled: app.data.settings['pages_home'] === page.id() && app.data.settings['default_route'] === '/pages/home',
                         })}
                         {Button.component({
                             className: 'Button Button--page-view',
