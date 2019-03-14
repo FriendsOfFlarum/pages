@@ -1,0 +1,50 @@
+fof-pages:
+
+  ##
+  # UNIQUE KEYS - The following keys are used in only one location each.
+  ##
+
+  # Translations in this namespace are used by the admin interface.
+  admin:
+
+    # These strings are used in the Edit Page modal dialog.
+    edit_page:
+      content_label: => fof-pages.ref.content
+      content_placeholder: => fof-pages.ref.content
+      delete_page_button: Видалити сторінку
+      delete_page_confirmation: "Ви впевнені, що хочете видалити цю сторінку?"
+      hidden_label: Зберегти як чернетку
+      html_label: Увімкнути Html
+      set_as_home_page_confirmation: "Ви дійсно бажаєте встановити цю сторінку як домашню сторінку?"
+      slug_label: => fof-pages.ref.slug
+      slug_placeholder: => fof-pages.ref.slug
+      submit_button: => core.ref.save_changes
+      title: => fof-pages.ref.create_page
+      title_label: => fof-pages.ref.title
+      title_placeholder: => fof-pages.ref.title
+      url_label: => fof-pages.ref.url
+      url_placeholder: => fof-pages.ref.url
+
+    # These strings are used in the pages page.
+    nav:
+      pages_button: => fof-pages.ref.pages
+      pages_text: Створення власних статичних сторінок.
+
+    # Strings in this namespace are referenced by two or more unique keys.
+    pages:
+      about_text: Створення та керування статичними сторінками.
+      create_button: => fof-pages.ref.create_page
+
+    # These strings are used in the pages list.
+    pages_list:
+      empty_text: Схоже, що тут немає сторінок.
+      title: => fof-pages.ref.title
+
+  # These strings are used in the navigation bar.
+  ref:
+    content: Вміст
+    create_page: Створити сторінку
+    pages: Сторінки
+    slug: Slug (дружній пошуковій системі URL)
+    title: Заголовок
+    url: Url
