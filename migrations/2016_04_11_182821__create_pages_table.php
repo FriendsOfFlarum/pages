@@ -19,7 +19,7 @@ return [
             return;
         }
 
-        $schema->create('pages', function (Blueprint $table) use ($schema) {
+        $schema->create('pages', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('title', 200);
@@ -29,8 +29,6 @@ return [
             $table->text('content')->nullable();
 
             $table->boolean('is_hidden')->default(0);
-
-            Migration::fixIndexNames($schema, $table);
         });
     },
     'down' => function (Builder $schema) {
