@@ -1,0 +1,50 @@
+fof-pages:
+
+  ##
+  # UNIQUE KEYS - The following keys are used in only one location each.
+  ##
+
+  # Translations in this namespace are used by the admin interface.
+  admin:
+
+    # These strings are used in the Edit Page modal dialog.
+    edit_page:
+      content_label: => İçerik
+      content_placeholder: => Sayfa içeriğini buraya yazın.
+      delete_page_button: Sayfayı Sil
+      delete_page_confirmation: "Bu sayfayı silmek istediğinize emin misiniz?"
+      hidden_label: Taslak olarak kaydet
+      html_label: HTML kullanmayı aktif et
+      set_as_home_page_confirmation: "Bu sayfayı, Ana Sayfa olarak kullanmak istediğinize emin misiniz?"
+      slug_label: => URL
+      slug_placeholder: => Sayfa URL'ini buraya yazın.
+      submit_button: => Değişiklikleri Kaydet
+      title: => Yeni Sayfa Oluştur
+      title_label: => Başlık
+      title_placeholder: => Sayfa başlığını buraya yazın.
+      url_label: => URL
+      url_placeholder: => URL
+
+    # These strings are used in the pages page.
+    nav:
+      pages_button: => Sayfalar
+      pages_text: Sabit sayfalar oluşturun.
+
+    # Strings in this namespace are referenced by two or more unique keys.
+    pages:
+      about_text: Sabit sayfalar oluşturun ve düzenleyin.
+      create_button: => Sayfa Oluştur
+
+    # These strings are used in the pages list.
+    pages_list:
+      empty_text: Görünüşe göre hiç sabit sayfa bulunmuyor.
+      title: => Başlık
+
+  # These strings are used in the navigation bar.
+  ref:
+    content: İçeril
+    create_page: Sayfa Oluştur
+    pages: Sayfalar
+    slug: URL
+    title: Başlık
+    url: URL
