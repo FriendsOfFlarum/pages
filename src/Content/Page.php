@@ -15,6 +15,7 @@ use Flarum\Api\Client;
 use Flarum\Frontend\Document;
 use Flarum\Http\Exception\RouteNotFoundException;
 use Flarum\Http\UrlGenerator;
+use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\User;
 use FoF\Pages\Api\Controller\ShowPageController;
 use Illuminate\Contracts\View\Factory;
@@ -33,19 +34,26 @@ class Page
     protected $url;
 
     /**
+     * @var SettingsRepositoryInterface
+     */
+    protected $settings;
+
+    /**
      * @var Factory
      */
     protected $view;
 
     /**
-     * @param Client       $api
+     * @param Client $api
      * @param UrlGenerator $url
-     * @param Factory      $view
+     * @param SettingsRepositoryInterface $settings
+     * @param Factory $view
      */
-    public function __construct(Client $api, UrlGenerator $url, Factory $view)
+    public function __construct(Client $api, UrlGenerator $url, SettingsRepositoryInterface $settings, Factory $view)
     {
         $this->api = $api;
         $this->url = $url;
+        $this->settings = $settings;
         $this->view = $view;
     }
 
@@ -54,7 +62,7 @@ class Page
         $queryParams = $request->getQueryParams();
 
         $params = [
-            'id' => array_get($queryParams, 'id'),
+            'id' => array_get($queryParams, 'id') ?? $this->settings->get('pages_home'),
         ];
 
         $apiDocument = $this->getApiDocument($request->getAttribute('actor'), $params);

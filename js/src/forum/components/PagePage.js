@@ -83,7 +83,8 @@ export default class PagePage extends Page {
     loadPage() {
         const id = this.id();
 
-        const page = app.preloadedApiDocument() || app.store.getById('pages', id);
+        // cannot use app.preloadedApiDocument() in beta 9 as it passes an array of discussions
+        const page = app.store.getById('pages', id);
 
         if (page) {
             this.show(page);
