@@ -44,10 +44,10 @@ class Page
     protected $view;
 
     /**
-     * @param Client $api
-     * @param UrlGenerator $url
+     * @param Client                      $api
+     * @param UrlGenerator                $url
      * @param SettingsRepositoryInterface $settings
-     * @param Factory $view
+     * @param Factory                     $view
      */
     public function __construct(Client $api, UrlGenerator $url, SettingsRepositoryInterface $settings, Factory $view)
     {
