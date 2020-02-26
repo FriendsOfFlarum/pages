@@ -28,6 +28,9 @@ fof-pages:
       title: => fof-pages.ref.title
     permissions:
       restricted: View restricted pages
+    badges:
+      hidden: Draft
+      restricted: Restricted
 
   ref:
     content: Content
