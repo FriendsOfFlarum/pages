@@ -16,6 +16,7 @@ export default class EditPageModal extends Modal {
         this.slug = m.prop(this.page.slug() || '');
         this.pageContent = m.prop(this.page.content() || '');
         this.isHidden = m.prop(this.page.isHidden() && true);
+        this.isRestricted = m.prop(this.page.isRestricted() && true);
         this.isHtml = m.prop(this.page.isHtml() && true);
     }
 
@@ -71,7 +72,7 @@ export default class EditPageModal extends Modal {
                     <div className="Form-group">
                         <div>
                             <label className="checkbox">
-                                <input type="checkbox" value="1" checked={this.isHidden()} onchange={m.withAttr('checked', this.isHidden)} />
+                                <input type="checkbox" checked={this.isHidden()} onchange={m.withAttr('checked', this.isHidden)} />
                                 {app.translator.trans('fof-pages.admin.edit_page.hidden_label')}
                             </label>
                         </div>
@@ -80,11 +81,21 @@ export default class EditPageModal extends Modal {
                     <div className="Form-group">
                         <div>
                             <label className="checkbox">
-                                <input type="checkbox" value="1" checked={this.isHtml()} onchange={m.withAttr('checked', this.isHtml)} />
+                                <input type="checkbox" checked={this.isRestricted()} onchange={m.withAttr('checked', this.isRestricted)}/>
+                                {app.translator.trans('fof-pages.admin.edit_page.restricted_label')}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="Form-group">
+                        <div>
+                            <label className="checkbox">
+                                <input type="checkbox" checked={this.isHtml()} onchange={m.withAttr('checked', this.isHtml)} />
                                 {app.translator.trans('fof-pages.admin.edit_page.html_label')}
                             </label>
                         </div>
                     </div>
+
                     <div className="Form-group">
                         {Button.component({
                             type: 'submit',
@@ -117,6 +128,7 @@ export default class EditPageModal extends Modal {
                     slug: this.slug(),
                     content: this.pageContent(),
                     isHidden: this.isHidden(),
+                    isRestricted: this.isRestricted(),
                     isHtml: this.isHtml(),
                 },
                 { errorHandler: this.onerror.bind(this) }

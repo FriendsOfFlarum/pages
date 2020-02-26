@@ -12,6 +12,7 @@
 namespace FoF\Pages\Api\Serializer;
 
 use Flarum\Api\Serializer\AbstractSerializer;
+use FoF\Pages\Page;
 use FoF\Pages\Util\Html;
 
 class PageSerializer extends AbstractSerializer
@@ -22,7 +23,8 @@ class PageSerializer extends AbstractSerializer
     protected $type = 'pages';
 
     /**
-     * {@inheritdoc}
+     * @param Page $page
+     * @return array
      */
     protected function getDefaultAttributes($page)
     {
@@ -38,6 +40,7 @@ class PageSerializer extends AbstractSerializer
         if ($this->actor->isAdmin()) {
             $attributes['content'] = $page->content;
             $attributes['isHidden'] = $page->is_hidden;
+            $attributes['isRestricted'] = $page->is_restricted;
             $attributes['isHtml'] = $page->is_html;
         }
 

@@ -49,6 +49,7 @@ class CreatePageHandler
             array_get($data, 'attributes.slug'),
             array_get($data, 'attributes.content'),
             array_get($data, 'attributes.isHidden'),
+            array_get($data, 'attributes.isRestricted'),
             array_get($data, 'attributes.isHtml')
         );
 

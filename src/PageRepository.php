@@ -55,8 +55,14 @@ class PageRepository
      */
     protected function scopeVisibleTo(Builder $query, User $user = null)
     {
-        if ($user !== null && !$user->isAdmin()) {
+        // fof-pages.viewHidden is intentionally not shown in the Permissions page
+        // But using a named permission instead of isAdmin here gives more flexibility for extending fof/pages
+        if ($user === null || !$user->hasPermission('fof-pages.viewHidden')) {
             $query->whereIsHidden(0);
+        }
+
+        if ($user === null || !$user->hasPermission('fof-pages.viewRestricted')) {
+            $query->whereIsRestricted(0);
         }
 
         return $query;
