@@ -15,9 +15,9 @@ export default class EditPageModal extends Modal {
         this.pageTitle = m.prop(this.page.title() || '');
         this.slug = m.prop(this.page.slug() || '');
         this.pageContent = m.prop(this.page.content() || '');
-        this.isHidden = m.prop(this.page.isHidden() && true);
-        this.isRestricted = m.prop(this.page.isRestricted() && true);
-        this.isHtml = m.prop(this.page.isHtml() && true);
+        this.isHidden = m.prop(this.page.isHidden());
+        this.isRestricted = m.prop(this.page.isRestricted());
+        this.isHtml = m.prop(this.page.isHtml());
     }
 
     className() {
