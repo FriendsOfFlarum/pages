@@ -18,7 +18,10 @@ export default class PagesListItem extends Component {
         const badges = page.badges().toArray();
         return (
             <tr key={page.id()}>
-                <th>{page.title()} {badges.length ? m('ul.badges', listItems(page.badges().toArray())) : null}</th>
+                <th>
+                    {page.title()}
+                    {badges.length && <ul className="badges">{listItems(page.badges().toArray())}</ul>}
+                </th>
                 <td className="Pages-actions">
                     <div className="ButtonGroup">
                         {Button.component({
