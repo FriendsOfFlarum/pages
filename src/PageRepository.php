@@ -38,7 +38,9 @@ class PageRepository
      */
     public function findOrFail($id, User $user = null)
     {
-        $query = Page::where('id', $id)->orWhere('slug', $id);
+        $query = Page::where(function (Builder $builder) use ($id) {
+            $builder->where('id', $id)->orWhere('slug', $id);
+        });
 
         return $this->scopeVisibleTo($query, $user)->firstOrFail();
     }
