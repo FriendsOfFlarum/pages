@@ -37,10 +37,10 @@ class Page extends AbstractModel
      * @var array
      */
     protected $casts = [
-        'id'        => 'integer',
-        'is_hidden' => 'boolean',
+        'id'            => 'integer',
+        'is_hidden'     => 'boolean',
         'is_restricted' => 'boolean',
-        'is_html'   => 'boolean',
+        'is_html'       => 'boolean',
     ];
 
     /**

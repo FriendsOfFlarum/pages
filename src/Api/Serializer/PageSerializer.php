@@ -24,6 +24,7 @@ class PageSerializer extends AbstractSerializer
 
     /**
      * @param Page $page
+     *
      * @return array
      */
     protected function getDefaultAttributes($page)
