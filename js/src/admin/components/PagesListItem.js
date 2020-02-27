@@ -2,6 +2,7 @@ import Alert from 'flarum/components/Alert';
 import Button from 'flarum/components/Button';
 import Component from 'flarum/Component';
 import saveSettings from 'flarum/utils/saveSettings';
+import listItems from 'flarum/helpers/listItems';
 
 import EditPageModal from './EditPageModal';
 
@@ -14,9 +15,13 @@ export default class PagesListItem extends Component {
     view() {
         const page = this.props.page;
         const url = app.forum.attribute('baseUrl') + '/p/' + page.id() + '-' + page.slug();
+        const badges = page.badges().toArray();
         return (
             <tr key={page.id()}>
-                <th>{page.title()}</th>
+                <th>
+                    {page.title()}
+                    {badges.length && <ul className="badges">{listItems(page.badges().toArray())}</ul>}
+                </th>
                 <td className="Pages-actions">
                     <div className="ButtonGroup">
                         {Button.component({

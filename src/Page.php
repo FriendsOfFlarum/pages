@@ -20,8 +20,10 @@ use Flarum\Post\Post;
  * @property string title
  * @property string slug
  * @property Carbon time
+ * @property Carbon edit_time
  * @property string content
  * @property bool is_hidden
+ * @property bool is_restricted
  * @property bool is_html
  */
 class Page extends AbstractModel
@@ -35,9 +37,10 @@ class Page extends AbstractModel
      * @var array
      */
     protected $casts = [
-        'id'        => 'integer',
-        'is_hidden' => 'boolean',
-        'is_html'   => 'boolean',
+        'id'            => 'integer',
+        'is_hidden'     => 'boolean',
+        'is_restricted' => 'boolean',
+        'is_html'       => 'boolean',
     ];
 
     /**
@@ -55,13 +58,9 @@ class Page extends AbstractModel
     /**
      * Create a new page.
      *
-     * @param string $name
-     * @param string $url
-     * @param string $type
-     *
      * @return static
      */
-    public static function build($title, $slug, $content, $isHidden, $isHtml)
+    public static function build($title, $slug, $content, $isHidden, $isRestricted, $isHtml)
     {
         $page = new static();
 
@@ -69,6 +68,7 @@ class Page extends AbstractModel
         $page->slug = $slug;
         $page->time = time();
         $page->content = $content;
+        $page->is_restricted = (bool) $isRestricted;
         $page->is_hidden = (bool) $isHidden;
         $page->is_html = (bool) $isHtml;
 

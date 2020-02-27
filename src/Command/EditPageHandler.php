@@ -73,6 +73,10 @@ class EditPageHandler
             $page->is_hidden = (bool) $attributes['isHidden'];
         }
 
+        if (isset($attributes['isRestricted'])) {
+            $page->is_restricted = (bool) $attributes['isRestricted'];
+        }
+
         if (isset($attributes['isHtml'])) {
             $page->is_html = (bool) $attributes['isHtml'];
         }
