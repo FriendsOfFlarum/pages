@@ -13,6 +13,7 @@ namespace FoF\Pages;
 
 use Carbon\Carbon;
 use Flarum\Database\AbstractModel;
+use Flarum\Database\ScopeVisibilityTrait;
 use Flarum\Formatter\Formatter;
 use Flarum\Post\Post;
 
@@ -28,6 +29,8 @@ use Flarum\Post\Post;
  */
 class Page extends AbstractModel
 {
+    use ScopeVisibilityTrait;
+
     /**
      * {@inheritdoc}
      */

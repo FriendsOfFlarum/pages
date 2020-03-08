@@ -52,11 +52,7 @@ class PageSearcher
     {
         $actor = $criteria->actor;
 
-        $query = $this->pages->query();
-
-        if ($actor !== null && !$actor->isAdmin()) {
-            $query->whereIsHidden(0);
-        }
+        $query = $this->pages->query()->whereVisibleTo($actor);
 
         $search = new PageSearch($query->getQuery(), $actor);
 

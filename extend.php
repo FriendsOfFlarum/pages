@@ -14,6 +14,7 @@ namespace FoF\Pages;
 use Flarum\Extend;
 use Flarum\Foundation\Application;
 use FoF\Pages\Api\Controller;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\View\Factory;
 
 return [
@@ -37,11 +38,13 @@ return [
         ->patch('/pages/{id}', 'pages.update', Controller\UpdatePageController::class)
         ->delete('/pages/{id}', 'pages.delete', Controller\DeletePageController::class),
 
-    function (Application $app, Factory $views) {
+    function (Application $app, Factory $views, Dispatcher $events) {
         $app->instance('path.pages', base_path().DIRECTORY_SEPARATOR.'pages');
 
         Page::setFormatter($app['flarum.formatter']);
 
         $views->addNamespace('fof-pages', __DIR__.'/resources/views');
+
+        $events->subscribe(Access\PagePolicy::class);
     },
 ];
