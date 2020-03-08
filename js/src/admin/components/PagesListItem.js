@@ -20,7 +20,7 @@ export default class PagesListItem extends Component {
             <tr key={page.id()}>
                 <th>
                     {page.title()}
-                    {badges.length && <ul className="badges">{listItems(page.badges().toArray())}</ul>}
+                    {badges.length ? <ul className="badges">{listItems(page.badges().toArray())}</ul> : null}
                 </th>
                 <td className="Pages-actions">
                     <div className="ButtonGroup">
