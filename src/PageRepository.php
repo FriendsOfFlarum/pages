@@ -11,6 +11,7 @@
 
 namespace FoF\Pages;
 
+use Flarum\User\Guest;
 use Flarum\User\User;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -38,33 +39,13 @@ class PageRepository
      */
     public function findOrFail($id, User $user = null)
     {
-        $query = Page::where(function (Builder $builder) use ($id) {
-            $builder->where('id', $id)->orWhere('slug', $id);
-        });
-
-        return $this->scopeVisibleTo($query, $user)->firstOrFail();
-    }
-
-    /**
-     * Scope a query to only include records that are visible to a user.
-     *
-     * @param Builder $query
-     * @param User    $user
-     *
-     * @return Builder
-     */
-    protected function scopeVisibleTo(Builder $query, User $user = null)
-    {
-        // fof-pages.viewHidden is intentionally not shown in the Permissions page
-        // But using a named permission instead of isAdmin here gives more flexibility for extending fof/pages
-        if ($user === null || !$user->hasPermission('fof-pages.viewHidden')) {
-            $query->whereIsHidden(0);
-        }
-
-        if ($user === null || !$user->hasPermission('fof-pages.viewRestricted')) {
-            $query->whereIsRestricted(0);
-        }
-
-        return $query;
+        return $this->query()
+            // We never pass a null $user from our own code, but third-party extensions
+            // like v17development/flarum-seo do it so we must allow null for backward compatibility
+            ->whereVisibleTo($user ?? new Guest())
+            ->where(function (Builder $builder) use ($id) {
+                $builder->where('id', $id)->orWhere('slug', $id);
+            })
+            ->firstOrFail();
     }
 }
