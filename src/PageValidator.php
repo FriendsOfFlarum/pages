@@ -30,7 +30,7 @@ class PageValidator extends AbstractValidator
         ],
         'content' => [
             'required',
-            'max:65535',
+            'max:16777215',
         ],
     ];
 }
