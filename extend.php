@@ -13,9 +13,9 @@ namespace FoF\Pages;
 
 use Flarum\Extend;
 use Flarum\Formatter\Formatter;
-use Illuminate\Container\Container;
 use Flarum\Foundation\Paths;
 use FoF\Pages\Api\Controller;
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
 
 return [
