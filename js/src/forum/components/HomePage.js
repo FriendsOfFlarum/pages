@@ -4,8 +4,8 @@ import icon from 'flarum/helpers/icon';
 import PagePage from './PagePage';
 
 export default class HomePage extends PagePage {
-    init() {
-        super.init();
+    oninit(vdom) {
+        super.oninit(vdom);
 
         app.history.push('homePage', icon('fas fa-home'));
         app.drawer.hide();
@@ -15,7 +15,7 @@ export default class HomePage extends PagePage {
     show(page) {
         this.page = page;
         app.setTitle('');
-        m.redraw();
+        m.redraw.sync();
     }
 
     hero() {

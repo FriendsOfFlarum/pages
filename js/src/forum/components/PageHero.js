@@ -27,7 +27,7 @@ export default class PageHero extends Component {
      */
     items() {
         const items = new ItemList();
-        const page = this.props.page;
+        const page = this.attrs.page;
 
         items.add(
             'title',

@@ -11,14 +11,12 @@
 
 namespace FoF\Pages\Command;
 
-use Flarum\User\AssertPermissionTrait;
 use FoF\Pages\PageRepository;
 use FoF\Pages\PageValidator;
+use Illuminate\Support\Arr;
 
 class EditPageHandler
 {
-    use AssertPermissionTrait;
-
     /**
      * @var PageRepository
      */
@@ -53,9 +51,9 @@ class EditPageHandler
 
         $page = $this->pages->findOrFail($command->pageId, $actor);
 
-        $this->assertAdmin($actor);
+        $actor->assertAdmin();
 
-        $attributes = array_get($data, 'attributes', []);
+        $attributes = Arr::get($data, 'attributes', []);
 
         if (isset($attributes['title'])) {
             $page->title = $attributes['title'];

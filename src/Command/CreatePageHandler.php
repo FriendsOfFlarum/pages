@@ -11,14 +11,12 @@
 
 namespace FoF\Pages\Command;
 
-use Flarum\User\AssertPermissionTrait;
 use FoF\Pages\Page;
 use FoF\Pages\PageValidator;
+use Illuminate\Support\Arr;
 
 class CreatePageHandler
 {
-    use AssertPermissionTrait;
-
     /**
      * @var PageValidator
      */
@@ -42,15 +40,15 @@ class CreatePageHandler
         $actor = $command->actor;
         $data = $command->data;
 
-        $this->assertAdmin($actor);
+        $actor->assertAdmin();
 
         $page = Page::build(
-            array_get($data, 'attributes.title'),
-            array_get($data, 'attributes.slug'),
-            array_get($data, 'attributes.content'),
-            array_get($data, 'attributes.isHidden'),
-            array_get($data, 'attributes.isRestricted'),
-            array_get($data, 'attributes.isHtml')
+            Arr::get($data, 'attributes.title'),
+            Arr::get($data, 'attributes.slug'),
+            Arr::get($data, 'attributes.content'),
+            Arr::get($data, 'attributes.isHidden'),
+            Arr::get($data, 'attributes.isRestricted'),
+            Arr::get($data, 'attributes.isHtml')
         );
 
         $this->validator->assertValid($page->getAttributes());

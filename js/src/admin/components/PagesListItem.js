@@ -13,7 +13,7 @@ import EditPageModal from './EditPageModal';
  */
 export default class PagesListItem extends Component {
     view() {
-        const page = this.props.page;
+        const page = this.attrs.page;
         const url = app.forum.attribute('baseUrl') + '/p/' + page.id() + '-' + page.slug();
         const badges = page.badges().toArray();
         return (
@@ -27,7 +27,7 @@ export default class PagesListItem extends Component {
                         {Button.component({
                             className: 'Button Button--page-edit',
                             icon: 'fas fa-pencil-alt',
-                            onclick: () => app.modal.show(new EditPageModal({ page })),
+                            onclick: () => app.modal.show(EditPageModal, { page }),
                         })}
                         {Button.component({
                             className: 'Button Button--page-edit',
@@ -54,28 +54,28 @@ export default class PagesListItem extends Component {
     setAsHomePage() {
         app.alerts.dismiss(this.successAlert);
         if (confirm(app.translator.trans('fof-pages.admin.edit_page.set_as_home_page_confirmation'))) {
-            const page = this.props.page;
+            const page = this.attrs.page;
             saveSettings({
                 default_route: '/pages/home',
                 pages_home: page.id(),
             })
                 .then(() => {
                     app.alerts.show(
-                        (this.successAlert = new Alert({ type: 'success', children: app.translator.trans('core.admin.basics.saved_message') }))
+                        {type: 'success'}, app.translator.trans('core.admin.basics.saved_message') 
                     );
                 })
                 .catch(() => {})
                 .then(() => {
                     this.loading = false;
-                    m.redraw();
+                    m.redraw.sync();
                 });
         }
     }
 
     delete() {
         if (confirm(app.translator.trans('fof-pages.admin.edit_page.delete_page_confirmation'))) {
-            const page = this.props.page;
-            page.delete().then(() => m.redraw());
+            const page = this.attrs.page;
+            page.delete().then(() => m.redraw.sync());
         }
     }
 }

@@ -13,6 +13,7 @@ namespace FoF\Pages\Api\Controller;
 
 use Flarum\Api\Controller\AbstractShowController;
 use FoF\Pages\PageRepository;
+use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 
@@ -41,7 +42,7 @@ class ShowPageController extends AbstractShowController
      */
     protected function data(ServerRequestInterface $request, Document $document)
     {
-        $id = array_get($request->getQueryParams(), 'id');
+        $id = Arr::get($request->getQueryParams(), 'id');
 
         $actor = $request->getAttribute('actor');
 

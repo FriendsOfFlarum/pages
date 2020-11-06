@@ -14,9 +14,8 @@ export default class PagesPage extends Page {
                         {Button.component({
                             className: 'Button Button--primary',
                             icon: 'fas fa-plus',
-                            children: app.translator.trans('fof-pages.admin.pages.create_button'),
-                            onclick: () => app.modal.show(new EditPageModal()),
-                        })}
+                            onclick: () => app.modal.show(EditPageModal),
+                        }, app.translator.trans('fof-pages.admin.pages.create_button'))}
                     </div>
                 </div>
                 <div className="PagesPage-list">

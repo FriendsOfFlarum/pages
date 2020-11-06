@@ -1,23 +1,25 @@
 import Modal from 'flarum/components/Modal';
 import Button from 'flarum/components/Button';
 import { slug } from 'flarum/utils/string';
+import Stream from 'flarum/utils/Stream';
+import withAttr from 'flarum/utils/withAttr';
 
 /**
  * The `EditPageModal` component shows a modal dialog which allows the user
  * to create or edit a page.
  */
 export default class EditPageModal extends Modal {
-    init() {
-        super.init();
+    oninit(vdom) {
+        super.oninit(vdom);
 
-        this.page = this.props.page || app.store.createRecord('pages');
+        this.page = this.attrs.page || app.store.createRecord('pages');
 
-        this.pageTitle = m.prop(this.page.title() || '');
-        this.slug = m.prop(this.page.slug() || '');
-        this.pageContent = m.prop(this.page.content() || '');
-        this.isHidden = m.prop(this.page.isHidden());
-        this.isRestricted = m.prop(this.page.isRestricted());
-        this.isHtml = m.prop(this.page.isHtml());
+        this.pageTitle = Stream(this.page.title() || '');
+        this.slug = Stream(this.page.slug() || '');
+        this.pageContent = Stream(this.page.content() || '');
+        this.isHidden = Stream(this.page.isHidden());
+        this.isRestricted = Stream(this.page.isRestricted());
+        this.isHtml = Stream(this.page.isHtml());
     }
 
     className() {
@@ -64,7 +66,7 @@ export default class EditPageModal extends Modal {
                             className="FormControl"
                             rows="5"
                             value={this.pageContent()}
-                            onchange={m.withAttr('value', this.pageContent)}
+                            onchange={withAttr('value', this.pageContent)}
                             placeholder={app.translator.trans('fof-pages.admin.edit_page.content_placeholder')}
                         />
                     </div>
@@ -72,7 +74,7 @@ export default class EditPageModal extends Modal {
                     <div className="Form-group">
                         <div>
                             <label className="checkbox">
-                                <input type="checkbox" checked={this.isHidden()} onchange={m.withAttr('checked', this.isHidden)} />
+                                <input type="checkbox" checked={this.isHidden()} onchange={withAttr('checked', this.isHidden)} />
                                 {app.translator.trans('fof-pages.admin.edit_page.hidden_label')}
                             </label>
                         </div>
@@ -81,7 +83,7 @@ export default class EditPageModal extends Modal {
                     <div className="Form-group">
                         <div>
                             <label className="checkbox">
-                                <input type="checkbox" checked={this.isRestricted()} onchange={m.withAttr('checked', this.isRestricted)}/>
+                                <input type="checkbox" checked={this.isRestricted()} onchange={withAttr('checked', this.isRestricted)}/>
                                 {app.translator.trans('fof-pages.admin.edit_page.restricted_label')}
                             </label>
                         </div>
@@ -90,7 +92,7 @@ export default class EditPageModal extends Modal {
                     <div className="Form-group">
                         <div>
                             <label className="checkbox">
-                                <input type="checkbox" checked={this.isHtml()} onchange={m.withAttr('checked', this.isHtml)} />
+                                <input type="checkbox" checked={this.isHtml()} onchange={withAttr('checked', this.isHtml)} />
                                 {app.translator.trans('fof-pages.admin.edit_page.html_label')}
                             </label>
                         </div>
@@ -101,8 +103,7 @@ export default class EditPageModal extends Modal {
                             type: 'submit',
                             className: 'Button Button--primary EditPageModal-save',
                             loading: this.loading,
-                            children: app.translator.trans('fof-pages.admin.edit_page.submit_button'),
-                        })}
+                        }, app.translator.trans('fof-pages.admin.edit_page.submit_button'))}
                         {this.page.exists ? (
                             <button type="button" className="Button EditPageModal-delete" onclick={this.delete.bind(this)}>
                                 {app.translator.trans('fof-pages.admin.edit_page.delete_page_button')}
@@ -136,7 +137,7 @@ export default class EditPageModal extends Modal {
             .then(this.hide.bind(this))
             .catch(() => {
                 this.loading = false;
-                m.redraw();
+                m.redraw.sync();
             });
     }
 
@@ -146,7 +147,7 @@ export default class EditPageModal extends Modal {
 
     delete() {
         if (confirm(app.translator.trans('fof-pages.admin.edit_page.delete_page_confirmation'))) {
-            this.page.delete().then(() => m.redraw());
+            this.page.delete().then(() => m.redraw.sync());
             this.hide();
         }
     }

@@ -4,8 +4,8 @@ import LoadingIndicator from 'flarum/components/LoadingIndicator';
 import PageHero from './PageHero';
 
 export default class PagePage extends Page {
-    init() {
-        super.init();
+    oninit(vdom) {
+        super.oninit(vdom);
 
         /**
          * The page that is being viewed.
@@ -49,8 +49,6 @@ export default class PagePage extends Page {
 
         app.history.push('page', page.title());
         app.setTitle(page.title());
-
-        m.redraw();
     }
 
     /**
