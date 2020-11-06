@@ -19,6 +19,7 @@ use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\User;
 use FoF\Pages\Api\Controller\ShowPageController;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 
 class Page
@@ -62,7 +63,7 @@ class Page
         $queryParams = $request->getQueryParams();
 
         $params = [
-            'id' => array_get($queryParams, 'id') ?? $this->settings->get('pages_home'),
+            'id' => Arr::get($queryParams, 'id') ?? $this->settings->get('pages_home'),
         ];
 
         $apiDocument = $this->getApiDocument($request->getAttribute('actor'), $params);

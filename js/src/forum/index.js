@@ -3,9 +3,9 @@ import PagePage from './components/PagePage';
 import Page from '../common/models/Page';
 
 app.initializers.add('fof-pages', app => {
-    app.routes.homePage = { path: '/pages/home', component: HomePage.component() };
+    app.routes.homePage = { path: '/pages/home', component: HomePage };
 
-    app.routes.page = { path: '/p/:id', component: PagePage.component() };
+    app.routes.page = { path: '/p/:id', component: PagePage };
     app.store.models.pages = Page;
 
     /**

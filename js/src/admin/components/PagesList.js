@@ -10,7 +10,8 @@ import PagesListItem from './PagesListItem';
  *
  */
 export default class PagesList extends Component {
-    init() {
+    oninit(vnode) {
+        super.oninit(vnode);
         /**
          * Whether or not pages results are loading.
          *
@@ -49,7 +50,7 @@ export default class PagesList extends Component {
 
         if (this.pages.length === 0) {
             const text = app.translator.trans('fof-pages.admin.pages_list.empty_text');
-            return Placeholder.component({ text });
+            return Placeholder.component( { text });
         }
 
         let next, prev;
@@ -157,7 +158,7 @@ export default class PagesList extends Component {
         this.nextResults = !!results.payload.links.next;
         this.prevResults = !!results.payload.links.prev;
 
-        m.lazyRedraw();
+        m.redraw();
         return results;
     }
 }

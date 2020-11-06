@@ -12,10 +12,11 @@
 namespace FoF\Pages;
 
 use Flarum\Extend;
-use Flarum\Foundation\Application;
+use Flarum\Formatter\Formatter;
+use Flarum\Foundation\Paths;
 use FoF\Pages\Api\Controller;
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Contracts\View\Factory;
 
 return [
     new Extend\Locales(__DIR__.'/resources/locale'),
@@ -38,12 +39,13 @@ return [
         ->patch('/pages/{id}', 'pages.update', Controller\UpdatePageController::class)
         ->delete('/pages/{id}', 'pages.delete', Controller\DeletePageController::class),
 
-    function (Application $app, Factory $views, Dispatcher $events) {
-        $app->instance('path.pages', base_path().DIRECTORY_SEPARATOR.'pages');
+    (new Extend\View())
+        ->namespace('fof-pages', __DIR__.'/resources/views'),
 
-        Page::setFormatter($app['flarum.formatter']);
+    function (Container $app, Dispatcher $events) {
+        $app->instance('path.pages', (app(Paths::class))->base.DIRECTORY_SEPARATOR.'pages');
 
-        $views->addNamespace('fof-pages', __DIR__.'/resources/views');
+        Page::setFormatter(app(Formatter::class));
 
         $events->subscribe(Access\PagePolicy::class);
     },

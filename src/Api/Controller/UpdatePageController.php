@@ -14,6 +14,7 @@ namespace FoF\Pages\Api\Controller;
 use Flarum\Api\Controller\AbstractShowController;
 use FoF\Pages\Command\EditPage;
 use Illuminate\Contracts\Bus\Dispatcher;
+use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 
@@ -42,9 +43,9 @@ class UpdatePageController extends AbstractShowController
      */
     protected function data(ServerRequestInterface $request, Document $document)
     {
-        $id = array_get($request->getQueryParams(), 'id');
+        $id = Arr::get($request->getQueryParams(), 'id');
         $actor = $request->getAttribute('actor');
-        $data = array_get($request->getParsedBody(), 'data');
+        $data = Arr::get($request->getParsedBody(), 'data');
 
         return $this->bus->dispatch(
             new EditPage($id, $actor, $data)

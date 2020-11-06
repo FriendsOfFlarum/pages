@@ -12,13 +12,10 @@
 namespace FoF\Pages\Command;
 
 use Flarum\Settings\SettingsRepositoryInterface;
-use Flarum\User\AssertPermissionTrait;
 use FoF\Pages\PageRepository;
 
 class DeletePageHandler
 {
-    use AssertPermissionTrait;
-
     /**
      * @var SettingsRepositoryInterface
      */
@@ -51,7 +48,7 @@ class DeletePageHandler
 
         $page = $this->pages->findOrFail($command->pageId, $actor);
 
-        $this->assertAdmin($actor);
+        $actor->assertAdmin();
 
         // if it has been set as home page revert back to default router
         $homePage = intval($this->settings->get('pages_home'));
