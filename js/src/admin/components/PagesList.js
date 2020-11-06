@@ -158,7 +158,7 @@ export default class PagesList extends Component {
         this.nextResults = !!results.payload.links.next;
         this.prevResults = !!results.payload.links.prev;
 
-        m.redraw.sync();
+        m.redraw();
         return results;
     }
 }
