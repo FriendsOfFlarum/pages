@@ -4,8 +4,8 @@ import LoadingIndicator from 'flarum/components/LoadingIndicator';
 import PageHero from './PageHero';
 
 export default class PagePage extends Page {
-    oninit(vdom) {
-        super.oninit(vdom);
+    oninit(vnode) {
+        super.oninit(vnode);
 
         /**
          * The page that is being viewed.

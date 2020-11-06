@@ -9,8 +9,8 @@ import withAttr from 'flarum/utils/withAttr';
  * to create or edit a page.
  */
 export default class EditPageModal extends Modal {
-    oninit(vdom) {
-        super.oninit(vdom);
+    oninit(vnode) {
+        super.oninit(vnode);
 
         this.page = this.attrs.page || app.store.createRecord('pages');
 
@@ -137,7 +137,7 @@ export default class EditPageModal extends Modal {
             .then(this.hide.bind(this))
             .catch(() => {
                 this.loading = false;
-                m.redraw.sync();
+                m.redraw();
             });
     }
 
@@ -147,7 +147,7 @@ export default class EditPageModal extends Modal {
 
     delete() {
         if (confirm(app.translator.trans('fof-pages.admin.edit_page.delete_page_confirmation'))) {
-            this.page.delete().then(() => m.redraw.sync());
+            this.page.delete().then(() => m.redraw());
             this.hide();
         }
     }

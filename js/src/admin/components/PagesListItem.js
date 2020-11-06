@@ -67,7 +67,7 @@ export default class PagesListItem extends Component {
                 .catch(() => {})
                 .then(() => {
                     this.loading = false;
-                    m.redraw.sync();
+                    m.redraw();
                 });
         }
     }
@@ -75,7 +75,7 @@ export default class PagesListItem extends Component {
     delete() {
         if (confirm(app.translator.trans('fof-pages.admin.edit_page.delete_page_confirmation'))) {
             const page = this.attrs.page;
-            page.delete().then(() => m.redraw.sync());
+            page.delete().then(() => m.redraw());
         }
     }
 }

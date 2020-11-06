@@ -10,8 +10,8 @@ import PagesListItem from './PagesListItem';
  *
  */
 export default class PagesList extends Component {
-    oninit(vdom) {
-        super.oninit(vdom);
+    oninit(vnode) {
+        super.oninit(vnode);
         /**
          * Whether or not pages results are loading.
          *
