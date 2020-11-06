@@ -73,8 +73,13 @@ export default class PagePage extends Page {
      * @return string
      */
     id() {
-        return m.route.param('id').split('-')[0];
-    }
+        const id = m.route.param('id').split('-')[0];
+        if (!isNaN(parseInt(id))) {
+          return id;
+        } else {
+          return m.route.param('id');
+        }
+      }
 
     /**
      * Load page from the store, or make a request
