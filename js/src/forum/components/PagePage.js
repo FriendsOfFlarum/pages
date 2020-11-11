@@ -49,6 +49,8 @@ export default class PagePage extends Page {
 
         app.history.push('page', page.title());
         app.setTitle(page.title());
+
+        m.redraw();
     }
 
     /**
