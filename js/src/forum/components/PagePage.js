@@ -94,7 +94,12 @@ export default class PagePage extends Page {
         if (page) {
             this.show(page);
         } else {
-            app.store.find('pages', id).then(this.show.bind(this));
+            Promise.all([
+                app.store.find('pages', id).then(result => {
+                    this.show(result);
+                }),
+                m.redraw()
+            ]);
         }
     }
 }
