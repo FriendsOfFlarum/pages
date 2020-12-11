@@ -16,6 +16,7 @@ use Flarum\Database\AbstractModel;
 use Flarum\Database\ScopeVisibilityTrait;
 use Flarum\Formatter\Formatter;
 use Flarum\Post\Post;
+use Laminas\Diactoros\ServerRequest;
 
 /**
  * @property string title
@@ -121,7 +122,7 @@ class Page extends AbstractModel
             return $this->content;
         }
 
-        return static::$formatter->render($this->attributes['content'], new Post());
+        return static::$formatter->render($this->attributes['content'], new Post(), new ServerRequest());
     }
 
     /**

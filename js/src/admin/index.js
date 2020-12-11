@@ -1,12 +1,13 @@
 import Page from '../common/models/Page';
-import addPagesPane from './addPagesPane';
+import PagesPage from './components/PagesPage';
 import addPageHomePageOption from './addPageHomePageOption';
 import addPermissions from './addPermissions';
 
 app.initializers.add('fof-pages', app => {
     app.store.models.pages = Page;
 
-    addPagesPane();
+    app.extensionData.for('fof-pages').registerPage(PagesPage);
+    
     addPageHomePageOption();
     addPermissions();
 });

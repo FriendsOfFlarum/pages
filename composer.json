@@ -7,8 +7,20 @@
   "type": "flarum-extension",
   "license": "MIT",
   "require": {
-    "flarum/core": "^0.1.0-beta.14"
+    "flarum/core": "^0.1.0-beta.15"
   },
+  "support": {
+    "issues": "https://github.com/FriendsOfFlarum/pages/issues",
+    "source": "https://github.com/FriendsOfFlarum/pages",
+    "forum": "https://discuss.flarum.org/d/18301"
+  },
+  "homepage": "https://friendsofflarum.org",
+  "funding": [
+    {
+      "type": "website",
+      "url": "https://opencollective.com/fof/donate"
+    }
+  ],
   "authors": [
     {
         "name": "Sajjad Hashemian",
@@ -31,6 +43,7 @@
   "extra": {
     "flarum-extension": {
       "title": "FoF Pages",
+      "category": "feature",
       "icon": {
         "name": "far fa-file-alt",
         "backgroundColor": "#e74c3c",

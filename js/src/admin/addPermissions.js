@@ -1,12 +1,11 @@
-import {extend} from 'flarum/extend';
-import PermissionGrid from 'flarum/components/PermissionGrid';
+import app from 'flarum/app';
 
 export default function () {
-    extend(PermissionGrid.prototype, 'viewItems', items => {
-        items.add('fof-pages-restricted', {
+    app.extensionData
+        .for('fof-pages')
+        .registerPermission({
             icon: 'fas fa-file-alt',
             label: app.translator.trans('fof-pages.admin.permissions.restricted'),
             permission: 'fof-pages.viewRestricted',
-        });
-    });
+        }, 'view');
 }
