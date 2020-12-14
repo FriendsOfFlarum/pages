@@ -13,7 +13,6 @@ export default class PagesPage extends ExtensionPage {
             <div className="PagesPage">
                 <div className="PagesPage-header">
                     <div className="container">
-                        <p>{app.translator.trans('fof-pages.admin.pages.about_text')}</p>
                         {Button.component({
                             className: 'Button Button--primary',
                             icon: 'fas fa-plus',
