@@ -12,11 +12,7 @@
 namespace FoF\Pages;
 
 use Flarum\Extend;
-use Flarum\Formatter\Formatter;
-use Flarum\Foundation\Paths;
 use FoF\Pages\Api\Controller;
-use Illuminate\Container\Container;
-use Illuminate\Contracts\Events\Dispatcher;
 
 return [
     new Extend\Locales(__DIR__.'/resources/locale'),
@@ -42,11 +38,16 @@ return [
     (new Extend\View())
         ->namespace('fof-pages', __DIR__.'/resources/views'),
 
-    function (Container $app, Dispatcher $events) {
-        $app->instance('path.pages', (app(Paths::class))->base.DIRECTORY_SEPARATOR.'pages');
+    (new Extend\ModelVisibility(Page::class))
+        ->scope(Access\ScopePageVisibility::class),
 
-        Page::setFormatter(app(Formatter::class));
+    (new Extend\Filter(Search\PageFilterer::class))
+        ->addFilter(Search\NoOpGambit::class),
 
-        $events->subscribe(Access\PagePolicy::class);
-    },
+    (new Extend\SimpleFlarumSearch(Search\PageSearcher::class))
+        ->setFullTextGambit(Search\NoOpGambit::class),
+
+    (new Extend\ServiceProvider())
+        ->register(Providers\PageServiceProvider::class)
+        ->register(Providers\SearchServiceProvider::class),
 ];

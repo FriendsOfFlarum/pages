@@ -1,6 +1,6 @@
-import Component from 'flarum/Component';
-import ItemList from 'flarum/utils/ItemList';
-import listItems from 'flarum/helpers/listItems';
+import Component from 'flarum/common/Component';
+import ItemList from 'flarum/common/utils/ItemList';
+import listItems from 'flarum/common/helpers/listItems';
 
 /**
  * The `PageHero` component displays the hero on a page page.

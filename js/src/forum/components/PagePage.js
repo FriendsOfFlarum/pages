@@ -1,5 +1,5 @@
-import Page from 'flarum/components/Page';
-import LoadingIndicator from 'flarum/components/LoadingIndicator';
+import Page from 'flarum/common/components/Page';
+import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 
 import PageHero from './PageHero';
 
@@ -75,11 +75,11 @@ export default class PagePage extends Page {
     id() {
         const id = m.route.param('id').split('-')[0];
         if (!isNaN(parseInt(id))) {
-          return id;
+            return id;
         } else {
-          return m.route.param('id');
+            return m.route.param('id');
         }
-      }
+    }
 
     /**
      * Load page from the store, or make a request
@@ -95,10 +95,10 @@ export default class PagePage extends Page {
             this.show(page);
         } else {
             Promise.all([
-                app.store.find('pages', id).then(result => {
+                app.store.find('pages', id).then((result) => {
                     this.show(result);
                 }),
-                m.redraw()
+                m.redraw(),
             ]);
         }
     }

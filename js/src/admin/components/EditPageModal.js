@@ -1,8 +1,8 @@
-import Modal from 'flarum/components/Modal';
-import Button from 'flarum/components/Button';
-import { slug } from 'flarum/utils/string';
-import Stream from 'flarum/utils/Stream';
-import withAttr from 'flarum/utils/withAttr';
+import Modal from 'flarum/common/components/Modal';
+import Button from 'flarum/common/components/Button';
+import { slug } from 'flarum/common/utils/string';
+import Stream from 'flarum/common/utils/Stream';
+import withAttr from 'flarum/common/utils/withAttr';
 
 /**
  * The `EditPageModal` component shows a modal dialog which allows the user
@@ -41,7 +41,7 @@ export default class EditPageModal extends Modal {
                             className="FormControl"
                             placeholder={app.translator.trans('fof-pages.admin.edit_page.title_placeholder')}
                             value={this.pageTitle()}
-                            oninput={e => {
+                            oninput={(e) => {
                                 this.pageTitle(e.target.value);
                                 this.slug(slug(e.target.value));
                             }}
@@ -54,7 +54,7 @@ export default class EditPageModal extends Modal {
                             className="FormControl"
                             placeholder={app.translator.trans('fof-pages.admin.edit_page.slug_placeholder')}
                             value={this.slug()}
-                            oninput={e => {
+                            oninput={(e) => {
                                 this.slug(e.target.value);
                             }}
                         />
@@ -83,7 +83,7 @@ export default class EditPageModal extends Modal {
                     <div className="Form-group">
                         <div>
                             <label className="checkbox">
-                                <input type="checkbox" checked={this.isRestricted()} onchange={withAttr('checked', this.isRestricted)}/>
+                                <input type="checkbox" checked={this.isRestricted()} onchange={withAttr('checked', this.isRestricted)} />
                                 {app.translator.trans('fof-pages.admin.edit_page.restricted_label')}
                             </label>
                         </div>
@@ -99,11 +99,14 @@ export default class EditPageModal extends Modal {
                     </div>
 
                     <div className="Form-group">
-                        {Button.component({
-                            type: 'submit',
-                            className: 'Button Button--primary EditPageModal-save',
-                            loading: this.loading,
-                        }, app.translator.trans('fof-pages.admin.edit_page.submit_button'))}
+                        {Button.component(
+                            {
+                                type: 'submit',
+                                className: 'Button Button--primary EditPageModal-save',
+                                loading: this.loading,
+                            },
+                            app.translator.trans('fof-pages.admin.edit_page.submit_button')
+                        )}
                         {this.page.exists ? (
                             <button type="button" className="Button EditPageModal-delete" onclick={this.delete.bind(this)}>
                                 {app.translator.trans('fof-pages.admin.edit_page.delete_page_button')}

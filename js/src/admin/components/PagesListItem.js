@@ -1,8 +1,7 @@
-import Alert from 'flarum/components/Alert';
-import Button from 'flarum/components/Button';
-import Component from 'flarum/Component';
-import saveSettings from 'flarum/utils/saveSettings';
-import listItems from 'flarum/helpers/listItems';
+import Button from 'flarum/common/components/Button';
+import Component from 'flarum/common/Component';
+import saveSettings from 'flarum/admin/utils/saveSettings';
+import listItems from 'flarum/common/helpers/listItems';
 
 import EditPageModal from './EditPageModal';
 
@@ -60,9 +59,7 @@ export default class PagesListItem extends Component {
                 pages_home: page.id(),
             })
                 .then(() => {
-                    app.alerts.show(
-                        {type: 'success'}, app.translator.trans('core.admin.basics.saved_message') 
-                    );
+                    app.alerts.show({ type: 'success' }, app.translator.trans('core.admin.basics.saved_message'));
                 })
                 .catch(() => {})
                 .then(() => {

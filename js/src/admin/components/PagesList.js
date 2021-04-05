@@ -1,7 +1,7 @@
-import Component from 'flarum/Component';
-import LoadingIndicator from 'flarum/components/LoadingIndicator';
-import Placeholder from 'flarum/components/Placeholder';
-import Button from 'flarum/components/Button';
+import Component from 'flarum/common/Component';
+import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
+import Placeholder from 'flarum/common/components/Placeholder';
+import Button from 'flarum/common/components/Button';
 
 import PagesListItem from './PagesListItem';
 
@@ -50,7 +50,7 @@ export default class PagesList extends Component {
 
         if (this.pages.length === 0) {
             const text = app.translator.trans('fof-pages.admin.pages_list.empty_text');
-            return Placeholder.component( { text });
+            return Placeholder.component({ text });
         }
 
         let next, prev;
@@ -81,7 +81,7 @@ export default class PagesList extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.pages.map(page => {
+                        {this.pages.map((page) => {
                             return PagesListItem.component({ page });
                         })}
                     </tbody>

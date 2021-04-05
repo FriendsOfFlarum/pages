@@ -13,9 +13,10 @@ namespace FoF\Pages\Api\Controller;
 
 use Flarum\Api\Controller\AbstractListController;
 use Flarum\Http\UrlGenerator;
-use Flarum\Search\SearchCriteria;
-use FoF\Pages\Search\Page\PageSearcher;
-use Illuminate\Support\Arr;
+use Flarum\Query\QueryCriteria;
+use FoF\Pages\Api\Serializer\PageSerializer;
+use FoF\Pages\Search\PageFilterer;
+use FoF\Pages\Search\PageSearcher;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
 
@@ -24,7 +25,7 @@ class ListPagesController extends AbstractListController
     /**
      * {@inheritdoc}
      */
-    public $serializer = 'FoF\Pages\Api\Serializer\PageSerializer';
+    public $serializer = PageSerializer::class;
 
     /**
      * {@inheritdoc}
@@ -32,9 +33,19 @@ class ListPagesController extends AbstractListController
     public $sortFields = ['time', 'editTime'];
 
     /**
+     * {@inheritdoc}
+     */
+    public $sort = ['editTime' => 'desc'];
+
+    /**
      * @var PageSearcher
      */
     protected $searcher;
+
+    /**
+     * @var PageFilterer
+     */
+    protected $filterer;
 
     /**
      * @var UrlGenerator
@@ -43,11 +54,13 @@ class ListPagesController extends AbstractListController
 
     /**
      * @param PageSearcher $searcher
+     * @param PageFilterer $filterer
      * @param UrlGenerator $url
      */
-    public function __construct(PageSearcher $searcher, UrlGenerator $url)
+    public function __construct(PageSearcher $searcher, PageFilterer $filterer, UrlGenerator $url)
     {
         $this->searcher = $searcher;
+        $this->filterer = $filterer;
         $this->url = $url;
     }
 
@@ -57,14 +70,19 @@ class ListPagesController extends AbstractListController
     protected function data(ServerRequestInterface $request, Document $document)
     {
         $actor = $request->getAttribute('actor');
-        $query = Arr::get($this->extractFilter($request), 'q');
+        $filters = $this->extractFilter($request);
         $sort = $this->extractSort($request);
-
-        $criteria = new SearchCriteria($actor, $query, $sort);
 
         $limit = $this->extractLimit($request);
         $offset = $this->extractOffset($request);
-        $results = $this->searcher->search($criteria, $limit, $offset);
+        $include = $this->extractInclude($request);
+
+        $criteria = new QueryCriteria($actor, $filters, $sort);
+        if (array_key_exists('q', $filters)) {
+            $results = $this->searcher->search($criteria, $limit, $offset);
+        } else {
+            $results = $this->filterer->filter($criteria, $limit, $offset);
+        }
 
         $document->addPaginationLinks(
             $this->url->to('api')->route('pages.index'),
@@ -74,6 +92,6 @@ class ListPagesController extends AbstractListController
             $results->areMoreResults() ? null : 0
         );
 
-        return $results->getResults();
+        return $results->getResults()->load($include);
     }
 }

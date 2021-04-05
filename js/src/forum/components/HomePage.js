@@ -1,5 +1,5 @@
-import IndexPage from 'flarum/components/IndexPage';
-import icon from 'flarum/helpers/icon';
+import IndexPage from 'flarum/forum/components/IndexPage';
+import icon from 'flarum/common/helpers/icon';
 
 import PagePage from './PagePage';
 

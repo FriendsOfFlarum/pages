@@ -38,7 +38,7 @@ class DeletePageHandler
     /**
      * @param DeletePage $command
      *
-     * @throws \Flarum\Core\Exception\PermissionDeniedException
+     * @throws \Flarum\User\Exception\PermissionDeniedException
      *
      * @return \FoF\Pages\Page
      */

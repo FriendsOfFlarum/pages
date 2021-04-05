@@ -33,6 +33,8 @@ class CreatePageHandler
     /**
      * @param CreatePage $command
      *
+     * @throws \Flarum\User\Exception\PermissionDeniedException
+     *
      * @return Page
      */
     public function handle(CreatePage $command)

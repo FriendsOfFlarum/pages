@@ -40,7 +40,7 @@ class EditPageHandler
     /**
      * @param EditPage $command
      *
-     * @throws \Flarum\Core\Exception\PermissionDeniedException
+     * @throws \Flarum\User\Exception\PermissionDeniedException
      *
      * @return \FoF\Pages\Page
      */

@@ -11,16 +11,12 @@
 
 namespace FoF\Pages\Access;
 
-use Flarum\User\AbstractPolicy;
 use Flarum\User\User;
-use FoF\Pages\Page;
 use Illuminate\Database\Eloquent\Builder;
 
-class PagePolicy extends AbstractPolicy
+class ScopePageVisibility
 {
-    protected $model = Page::class;
-
-    public function find(User $actor, Builder $query)
+    public function __invoke(User $actor, Builder $query)
     {
         if (!$actor->hasPermission('fof-pages.viewHidden')) {
             $query->whereIsHidden(0);

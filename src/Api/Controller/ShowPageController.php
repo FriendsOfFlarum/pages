@@ -12,6 +12,7 @@
 namespace FoF\Pages\Api\Controller;
 
 use Flarum\Api\Controller\AbstractShowController;
+use FoF\Pages\Api\Serializer\PageSerializer;
 use FoF\Pages\PageRepository;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
@@ -22,7 +23,7 @@ class ShowPageController extends AbstractShowController
     /**
      * {@inheritdoc}
      */
-    public $serializer = 'FoF\Pages\Api\Serializer\PageSerializer';
+    public $serializer = PageSerializer::class;
 
     /**
      * @var PageRepository
