@@ -44,7 +44,13 @@
         border-top: 1px solid @control-bg;
       }
       &:nth-of-type(odd) {
-        background-color: #fcfcfc;
+        .fof-pages-table-background(@config-dark-mode);
+        .fof-pages-table-background(false) {
+          background-color: #fcfcfc;
+        }
+        .fof-pages-table-background(true) {
+          background-color: rgba(255, 255, 255, 0.05);
+        }
       }
     }
   }
