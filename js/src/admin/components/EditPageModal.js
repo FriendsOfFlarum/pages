@@ -3,6 +3,7 @@ import Button from 'flarum/common/components/Button';
 import { slug } from 'flarum/common/utils/string';
 import Stream from 'flarum/common/utils/Stream';
 import withAttr from 'flarum/common/utils/withAttr';
+import setRouteWithForcedRefresh from 'flarum/common/utils/setRouteWithForcedRefresh';
 
 /**
  * The `EditPageModal` component shows a modal dialog which allows the user
@@ -137,21 +138,29 @@ export default class EditPageModal extends Modal {
                 },
                 { errorHandler: this.onerror.bind(this) }
             )
-            .then(this.hide.bind(this))
+            .then(this.hideAndRefresh.bind(this))
             .catch(() => {
                 this.loading = false;
                 m.redraw();
             });
     }
 
-    onhide() {
-        m.route(app.route('pages'));
+    hideAndRefresh() {
+        this.hide();
+        setRouteWithForcedRefresh(app.route('extension', { id: 'fof-pages' }));
     }
 
     delete() {
+        this.loading = true;
+
         if (confirm(app.translator.trans('fof-pages.admin.edit_page.delete_page_confirmation'))) {
-            this.page.delete().then(() => m.redraw());
-            this.hide();
+            this.page
+                .delete()
+                .then(this.hideAndRefresh.bind(this))
+                .catch(() => {
+                    this.loading = false;
+                    m.redraw();
+                });
         }
     }
 }

@@ -2,6 +2,7 @@ import Button from 'flarum/common/components/Button';
 import Component from 'flarum/common/Component';
 import saveSettings from 'flarum/admin/utils/saveSettings';
 import listItems from 'flarum/common/helpers/listItems';
+import setRouteWithForcedRefresh from 'flarum/common/utils/setRouteWithForcedRefresh';
 
 import EditPageModal from './EditPageModal';
 
@@ -72,7 +73,9 @@ export default class PagesListItem extends Component {
     delete() {
         if (confirm(app.translator.trans('fof-pages.admin.edit_page.delete_page_confirmation'))) {
             const page = this.attrs.page;
-            page.delete().then(() => m.redraw());
+            page.delete().then(() => {
+                setRouteWithForcedRefresh(app.route('extension', { id: 'fof-pages' }));
+            });
         }
     }
 }
