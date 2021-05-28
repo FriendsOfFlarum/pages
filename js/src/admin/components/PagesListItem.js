@@ -60,7 +60,7 @@ export default class PagesListItem extends Component {
                 pages_home: page.id(),
             })
                 .then(() => {
-                    app.alerts.show({ type: 'success' }, app.translator.trans('core.admin.basics.saved_message'));
+                    app.alerts.show({ type: 'success' }, app.translator.trans('fof-pages.admin.edit_page.set_as_home_page_done'));
                 })
                 .catch(() => {})
                 .then(() => {
