@@ -65,7 +65,7 @@ class Page
 
     private function getApiDocument(ServerRequestInterface $request, $id)
     {
-        $response = $this->api->withParentRequest($request)->get('/pages/' . $id);
+        $response = $this->api->withParentRequest($request)->get('/pages/'.$id);
 
         if ($response->getStatusCode() === 404) {
             throw new RouteNotFoundException();
