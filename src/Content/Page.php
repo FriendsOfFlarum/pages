@@ -16,8 +16,6 @@ use Flarum\Frontend\Document;
 use Flarum\Http\Exception\RouteNotFoundException;
 use Flarum\Http\UrlGenerator;
 use Flarum\Settings\SettingsRepositoryInterface;
-use Flarum\User\User;
-use FoF\Pages\Api\Controller\ShowPageController;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ServerRequestInterface;
@@ -44,12 +42,6 @@ class Page
      */
     protected $view;
 
-    /**
-     * @param Client                      $api
-     * @param UrlGenerator                $url
-     * @param SettingsRepositoryInterface $settings
-     * @param Factory                     $view
-     */
     public function __construct(Client $api, UrlGenerator $url, SettingsRepositoryInterface $settings, Factory $view)
     {
         $this->api = $api;
@@ -62,30 +54,18 @@ class Page
     {
         $queryParams = $request->getQueryParams();
 
-        $params = [
-            'id' => Arr::get($queryParams, 'id') ?? $this->settings->get('pages_home'),
-        ];
+        $id = Arr::get($queryParams, 'id') ?? $this->settings->get('pages_home');
 
-        $apiDocument = $this->getApiDocument($request->getAttribute('actor'), $params);
+        $apiDocument = $this->getApiDocument($request, $id);
 
         $document->content = $this->view->make('fof-pages::content.page', compact('apiDocument'));
 
         $document->payload['apiDocument'] = $apiDocument;
-
-        return $document;
     }
 
-    /**
-     * Get the result of an API request to list discussions.
-     *
-     * @param User  $actor
-     * @param array $params
-     *
-     * @return object
-     */
-    private function getApiDocument(User $actor, array $params)
+    private function getApiDocument(ServerRequestInterface $request, $id)
     {
-        $response = $this->api->send(ShowPageController::class, $actor, $params);
+        $response = $this->api->withParentRequest($request)->get('/pages/'.$id);
 
         if ($response->getStatusCode() === 404) {
             throw new RouteNotFoundException();

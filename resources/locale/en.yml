@@ -9,6 +9,7 @@ fof-pages:
       restricted_label: Restrict access (configure who can access in the Permissions tab)
       html_label: Enable HTML
       set_as_home_page_confirmation: "Are you sure you want to set this page as your home page?"
+      set_as_home_page_done: Home page updated
       slug_label: => fof-pages.ref.slug
       slug_placeholder: => fof-pages.ref.slug
       submit_button: => core.ref.save_changes

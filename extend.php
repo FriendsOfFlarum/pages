@@ -48,6 +48,5 @@ return [
         ->setFullTextGambit(Search\NoOpGambit::class),
 
     (new Extend\ServiceProvider())
-        ->register(Providers\PageServiceProvider::class)
-        ->register(Providers\SearchServiceProvider::class),
+        ->register(Providers\PageServiceProvider::class),
 ];
