@@ -87,7 +87,7 @@ class Page extends AbstractModel
      */
     public function getContentAttribute($value)
     {
-        return static::$formatter->unparse($value);
+        return static::$formatter->unparse($value, new Post());
     }
 
     /**
