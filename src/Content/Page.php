@@ -58,6 +58,8 @@ class Page
 
         $apiDocument = $this->getApiDocument($request, $id);
 
+        $document->title = $apiDocument->data->attributes->title;
+
         $document->content = $this->view->make('fof-pages::content.page', compact('apiDocument'));
 
         $document->payload['apiDocument'] = $apiDocument;
