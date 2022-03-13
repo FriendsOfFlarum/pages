@@ -121,7 +121,7 @@ class Page extends AbstractModel
             return $this->content;
         }
 
-        return static::$formatter->render($this->attributes['content'], new Post());
+        return static::$formatter->render($this->attributes['content']);
     }
 
     /**
