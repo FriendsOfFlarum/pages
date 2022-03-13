@@ -1,4 +1,6 @@
+import app from 'flarum/common/app';
 import Component from 'flarum/common/Component';
+import Link from 'flarum/common/components/Link';
 import ItemList from 'flarum/common/utils/ItemList';
 import listItems from 'flarum/common/helpers/listItems';
 
@@ -32,9 +34,9 @@ export default class PageHero extends Component {
     items.add(
       'title',
       <h2 className="PageHero-title">
-        <a href={app.route.page(page)} config={m.route}>
+        <Link href={app.route.page(page)}>
           {page.title()}
-        </a>
+        </Link>
       </h2>
     );
 
