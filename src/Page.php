@@ -107,7 +107,7 @@ class Page extends AbstractModel
      */
     public function setContentAttribute($value)
     {
-        $this->attributes['content'] = $value ? static::$formatter->parse($value, new Post()) : null;
+        $this->attributes['content'] = $value ? static::$formatter->parse($value, $this) : null;
     }
 
     /**
@@ -121,7 +121,7 @@ class Page extends AbstractModel
             return $this->content;
         }
 
-        return static::$formatter->render($this->attributes['content']);
+        return static::$formatter->render($this->attributes['content'], $this);
     }
 
     /**
