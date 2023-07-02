@@ -24,7 +24,7 @@ export default class PagePage extends Page {
     const page = this.page;
 
     return (
-      <div className={classList('Pages', page.isHtml() && 'Pages--isHtml')} data-id={page.id()} data-slug={page.slug()}>
+      <div className={classList('Pages', page?.isHtml() && 'Pages--isHtml')} data-id={page?.id()} data-slug={page?.slug()}>
         <div className="Pages-page">
           {page
             ? [
