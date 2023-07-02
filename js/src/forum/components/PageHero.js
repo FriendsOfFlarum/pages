@@ -33,9 +33,9 @@ export default class PageHero extends Component {
 
     items.add(
       'title',
-      <h2 className="PageHero-title">
+      <h1 className="PageHero-title">
         <Link href={app.route.page(page)}>{page.title()}</Link>
-      </h2>
+      </h1>
     );
 
     return items;
