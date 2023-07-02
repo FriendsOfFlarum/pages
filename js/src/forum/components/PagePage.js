@@ -1,5 +1,6 @@
 import Page from 'flarum/common/components/Page';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
+import classList from 'flarum/common/utils/classList';
 
 import PageHero from './PageHero';
 
@@ -23,7 +24,7 @@ export default class PagePage extends Page {
     const page = this.page;
 
     return (
-      <div className="Pages">
+      <div className={classList('Pages', page.isHtml() && 'Pages--isHtml')}>
         <div className="Pages-page">
           {page
             ? [

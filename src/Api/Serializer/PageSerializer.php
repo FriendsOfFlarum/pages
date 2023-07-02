@@ -36,13 +36,13 @@ class PageSerializer extends AbstractSerializer
             'time'        => $page->time,
             'editTime'    => $page->edit_time,
             'contentHtml' => Html::render($page->content_html, $page),
+            'isHtml'      => $page->is_html,
         ];
 
         if ($this->actor->isAdmin()) {
             $attributes['content'] = $page->content;
             $attributes['isHidden'] = $page->is_hidden;
             $attributes['isRestricted'] = $page->is_restricted;
-            $attributes['isHtml'] = $page->is_html;
         }
 
         return $attributes;
