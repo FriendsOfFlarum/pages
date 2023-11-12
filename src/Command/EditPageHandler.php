@@ -11,6 +11,7 @@
 
 namespace FoF\Pages\Command;
 
+use Carbon\Carbon;
 use FoF\Pages\PageRepository;
 use FoF\Pages\PageValidator;
 use Illuminate\Support\Arr;
@@ -79,7 +80,7 @@ class EditPageHandler
             $page->is_html = (bool) $attributes['isHtml'];
         }
 
-        $page->edit_time = time();
+        $page->edit_time = Carbon::now();
 
         $this->validator->assertValid($page->getDirty());
 

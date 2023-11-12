@@ -18,14 +18,14 @@ use Flarum\Formatter\Formatter;
 use Flarum\Post\Post;
 
 /**
- * @property string title
- * @property string slug
- * @property Carbon time
- * @property Carbon edit_time
- * @property string content
- * @property bool is_hidden
- * @property bool is_restricted
- * @property bool is_html
+ * @property string $title
+ * @property string $slug
+ * @property Carbon $time
+ * @property Carbon $edit_time
+ * @property string $content
+ * @property bool $is_hidden
+ * @property bool $is_restricted
+ * @property bool $is_html
  */
 class Page extends AbstractModel
 {
@@ -69,7 +69,7 @@ class Page extends AbstractModel
 
         $page->title = $title;
         $page->slug = $slug;
-        $page->time = time();
+        $page->time = Carbon::now();
         $page->content = $content;
         $page->is_restricted = (bool) $isRestricted;
         $page->is_hidden = (bool) $isHidden;

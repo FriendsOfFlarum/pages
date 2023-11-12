@@ -39,7 +39,7 @@ class PageRepository
      */
     public function findOrFail($id, User $user = null)
     {
-        return $this->query()
+        return Page::query()
             // We never pass a null $user from our own code, but third-party extensions
             // like v17development/flarum-seo do it so we must allow null for backward compatibility
             ->whereVisibleTo($user ?? new Guest())
