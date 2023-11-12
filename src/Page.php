@@ -23,9 +23,9 @@ use Flarum\Post\Post;
  * @property Carbon $time
  * @property Carbon $edit_time
  * @property string $content
- * @property bool $is_hidden
- * @property bool $is_restricted
- * @property bool $is_html
+ * @property bool   $is_hidden
+ * @property bool   $is_restricted
+ * @property bool   $is_html
  */
 class Page extends AbstractModel
 {
