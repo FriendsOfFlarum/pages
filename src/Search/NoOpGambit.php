@@ -35,5 +35,6 @@ class NoOpGambit implements GambitInterface, FilterInterface
     public function apply(SearchState $search, $bit)
     {
         // Does nothing
+        return false;
     }
 }
