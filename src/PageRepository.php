@@ -37,7 +37,7 @@ class PageRepository
      *
      * @return Page
      */
-    public function findOrFail($id, User $user = null)
+    public function findOrFail($id, ?User $user = null)
     {
         return Page::query()
             // We never pass a null $user from our own code, but third-party extensions
