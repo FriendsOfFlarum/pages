@@ -49,4 +49,5 @@ return [
 
     (new Extend\ServiceProvider())
         ->register(Providers\PageServiceProvider::class),
+    new Extend\ApiResource(Api\Resource\PageResource::class),
 ];
