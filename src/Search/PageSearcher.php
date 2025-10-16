@@ -11,28 +11,15 @@
 
 namespace FoF\Pages\Search;
 
-use Flarum\Search\AbstractSearcher;
-use Flarum\Search\GambitManager;
+use Flarum\Search\Database\AbstractSearcher;
 use Flarum\User\User;
-use FoF\Pages\PageRepository;
+use FoF\Pages\Page;
 use Illuminate\Database\Eloquent\Builder;
 
 class PageSearcher extends AbstractSearcher
 {
-    /**
-     * @var PageRepository
-     */
-    protected $pages;
-
-    public function __construct(GambitManager $gambits, array $searchMutators, PageRepository $pages)
+    public function getQuery(User $actor): Builder
     {
-        parent::__construct($gambits, $searchMutators);
-
-        $this->pages = $pages;
-    }
-
-    protected function getQuery(User $actor): Builder
-    {
-        return $this->pages->query();
+        return Page::whereVisibleTo($actor)->select('pages.*');
     }
 }

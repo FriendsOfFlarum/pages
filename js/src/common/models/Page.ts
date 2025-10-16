@@ -1,4 +1,4 @@
-import app from 'flarum/app';
+import app from 'flarum/common/app';
 import Model from 'flarum/common/Model';
 import computed from 'flarum/common/utils/computed';
 import { getPlainContent } from 'flarum/common/utils/string';
@@ -7,8 +7,8 @@ import Badge from 'flarum/common/components/Badge';
 
 export default class Page extends Model {
   title = Model.attribute('title');
-  time = Model.attribute('time', Model.transformDate);
-  editTime = Model.attribute('editTime', Model.transformDate);
+  createdAt = Model.attribute('createdAt', Model.transformDate);
+  updatedAt = Model.attribute('updatedAt', Model.transformDate);
   content = Model.attribute('content');
   contentHtml = Model.attribute('contentHtml');
   contentPlain = computed('contentHtml', getPlainContent);

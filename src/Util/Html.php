@@ -15,8 +15,12 @@ use FoF\Pages\Page;
 
 class Html
 {
-    public static function render($html, Page $page)
+    public static function render(?string $html, Page $page): string
     {
+        if (empty($html)) {
+            return '';
+        }
+
         if (strpos($html, '@include(') !== false) {
             $html = preg_replace_callback(
                 '/\@include\([\"\']?([\.\/\w\s]+)[\"\']?\)/mi',
@@ -30,6 +34,7 @@ class Html
                     $path = realpath($path);
                     if (!empty($path) && strpos($path, $base) === 0 && is_readable($path)) {
                         $view = resolve('view')->file($path);
+                        /** @phpstan-ignore-next-line */
                         $view->page = $page;
 
                         return $view->render();

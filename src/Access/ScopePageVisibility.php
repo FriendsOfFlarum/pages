@@ -19,11 +19,20 @@ class ScopePageVisibility
     public function __invoke(User $actor, Builder $query)
     {
         if (!$actor->hasPermission('fof-pages.viewHidden')) {
-            $query->whereIsHidden(0);
+            $query->where('is_hidden', false);
+        }
+
+        if ($actor->hasPermission('fof-pages.viewHidden')) {
+            $query->where('is_hidden', true)->orWhere('is_hidden', false);
         }
 
         if (!$actor->hasPermission('fof-pages.viewRestricted')) {
-            $query->whereIsRestricted(0);
+            $query->where('is_restricted', false);
+        }
+
+        if ($actor->hasPermission('fof-pages.viewRestricted')) {
+            $query->where('is_restricted', true)->orWhere('is_restricted', false);
         }
     }
 }
+//

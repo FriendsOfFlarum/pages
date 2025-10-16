@@ -9,16 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Pages\Command;
+use Flarum\Database\Migration;
 
-use Flarum\User\User;
-
-class DeletePage
-{
-    public function __construct(
-        public $pageId,
-        public User $actor,
-        public array $data = []
-    ) {
-    }
-}
+return Migration::renameColumns('pages', [
+    'time'      => 'created_at',
+    'edit_time' => 'updated_at',
+]);

@@ -116,7 +116,6 @@ export default class PagesList extends Component {
     const offset = this.page * this.loadLimit;
     return app.store.find('pages', {
       page: { offset, limit: this.loadLimit },
-      sort: '-time',
     });
   }
 

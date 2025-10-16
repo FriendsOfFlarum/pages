@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace FoF\Pages\Command;
+namespace FoF\Pages\Events;
 
 use Flarum\User\User;
+use FoF\Pages\Page;
 
-class DeletePage
+class AbstractPageEvent
 {
     public function __construct(
-        public $pageId,
-        public User $actor,
-        public array $data = []
+        public Page $page,
+        public User $actor
     ) {
     }
 }

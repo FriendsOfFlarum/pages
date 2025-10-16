@@ -7,7 +7,7 @@
     "type": "flarum-extension",
     "license": "MIT",
     "require": {
-        "flarum/core": "^1.2",
+        "flarum/core": "^2.0.0-beta",
         "ext-json": "*"
     },
     "support": {
@@ -24,18 +24,11 @@
     ],
     "authors": [
         {
-            "name": "Sajjad Hashemian",
-            "email": "wolaws@gmail.com"
-        },
-        {
-            "name": "David Sevilla Martín",
-            "email": "david.s@redevs.org",
+            "name": "IanM",
+            "email": "ian@flarum.org",
             "role": "Developer"
         }
     ],
-    "replace": {
-        "sijad/flarum-ext-pages": "*"
-    },
     "autoload": {
         "psr-4": {
             "FoF\\Pages\\": "src/"
@@ -61,7 +54,8 @@
         }
     },
     "require-dev": {
-        "flarum/phpstan": "*"
+        "flarum/phpstan": "^2.0.0-beta",
+        "flarum/testing": "^2.0.0-beta"
     },
     "scripts": {
         "analyse:phpstan": "phpstan analyse",

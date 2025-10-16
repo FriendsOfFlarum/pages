@@ -16,12 +16,13 @@ use Flarum\Database\AbstractModel;
 use Flarum\Database\ScopeVisibilityTrait;
 use Flarum\Formatter\Formatter;
 use Flarum\Post\Post;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property string $title
  * @property string $slug
- * @property Carbon $time
- * @property Carbon $edit_time
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property string $content
  * @property bool   $is_hidden
  * @property bool   $is_restricted
@@ -30,26 +31,20 @@ use Flarum\Post\Post;
 class Page extends AbstractModel
 {
     use ScopeVisibilityTrait;
+    use HasFactory;
 
-    /**
-     * {@inheritdoc}
-     */
     protected $table = 'pages';
 
-    /**
-     * @var array
-     */
     protected $casts = [
         'id'            => 'integer',
         'is_hidden'     => 'boolean',
         'is_restricted' => 'boolean',
         'is_html'       => 'boolean',
+        'created_at'    => 'datetime',
+        'updated_at'    => 'datetime',
     ];
 
-    /**
-     * {@inheritdoc}
-     */
-    protected $dates = ['time', 'edit_time'];
+    public $timestamps = true;
 
     /**
      * The text formatter instance.
@@ -57,26 +52,6 @@ class Page extends AbstractModel
      * @var \Flarum\Formatter\Formatter
      */
     protected static $formatter;
-
-    /**
-     * Create a new page.
-     *
-     * @return static
-     */
-    public static function build($title, $slug, $content, $isHidden, $isRestricted, $isHtml)
-    {
-        $page = new static();
-
-        $page->title = $title;
-        $page->slug = $slug;
-        $page->time = Carbon::now();
-        $page->content = $content;
-        $page->is_restricted = (bool) $isRestricted;
-        $page->is_hidden = (bool) $isHidden;
-        $page->is_html = (bool) $isHtml;
-
-        return $page;
-    }
 
     /**
      * Unparse the parsed content.

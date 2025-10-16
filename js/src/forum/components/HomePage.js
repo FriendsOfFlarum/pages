@@ -1,5 +1,5 @@
 import IndexPage from 'flarum/forum/components/IndexPage';
-import icon from 'flarum/common/helpers/icon';
+import Icon from 'flarum/common/components/Icon';
 
 import PagePage from './PagePage';
 
@@ -7,7 +7,7 @@ export default class HomePage extends PagePage {
   oninit(vnode) {
     super.oninit(vnode);
 
-    app.history.push('homePage', icon('fas fa-home'));
+    app.history.push('homePage', <Icon name="fas fa-home" />);
     app.drawer.hide();
     app.modal.close();
   }
