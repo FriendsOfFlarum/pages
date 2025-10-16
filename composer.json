@@ -24,18 +24,11 @@
     ],
     "authors": [
         {
-            "name": "Sajjad Hashemian",
-            "email": "wolaws@gmail.com"
-        },
-        {
-            "name": "David Sevilla Martín",
-            "email": "david.s@redevs.org",
+            "name": "IanM",
+            "email": "ian@flarum.org",
             "role": "Developer"
         }
     ],
-    "replace": {
-        "sijad/flarum-ext-pages": "*"
-    },
     "autoload": {
         "psr-4": {
             "FoF\\Pages\\": "src/"
@@ -61,7 +54,8 @@
         }
     },
     "require-dev": {
-        "flarum/phpstan": "^2.0.0-beta"
+        "flarum/phpstan": "^2.0.0-beta",
+        "flarum/testing": "^2.0.0-beta"
     },
     "scripts": {
         "analyse:phpstan": "phpstan analyse",

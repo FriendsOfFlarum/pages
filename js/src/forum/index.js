@@ -1,8 +1,9 @@
+import app from 'flarum/forum/app';
 import HomePage from './components/HomePage';
 import PagePage from './components/PagePage';
 import Page from '../common/models/Page';
 
-app.initializers.add('fof-pages', (app) => {
+app.initializers.add('fof-pages', () => {
   app.routes.homePage = { path: '/pages/home', component: HomePage };
 
   app.routes.page = { path: '/p/:id', component: PagePage };

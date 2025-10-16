@@ -12,7 +12,6 @@
 namespace FoF\Pages;
 
 use Flarum\Extend;
-use FoF\Pages\Api\Controller;
 
 return [
     new Extend\Locales(__DIR__.'/resources/locale'),
@@ -28,13 +27,6 @@ return [
         ->route('/p/{id:[\d\S]+(?:-[^/]*)?}', 'pages.page', Content\Page::class)
         ->content(Content\AddHomePageId::class),
 
-    (new Extend\Routes('api'))
-        ->get('/pages', 'pages.index', Controller\ListPagesController::class)
-        ->post('/pages', 'pages.create', Controller\CreatePageController::class)
-        ->get('/pages/{id}', 'pages.show', Controller\ShowPageController::class)
-        ->patch('/pages/{id}', 'pages.update', Controller\UpdatePageController::class)
-        ->delete('/pages/{id}', 'pages.delete', Controller\DeletePageController::class),
-
     (new Extend\View())
         ->namespace('fof-pages', __DIR__.'/resources/views'),
 
@@ -43,9 +35,9 @@ return [
 
     (new Extend\ServiceProvider())
         ->register(Providers\PageServiceProvider::class),
+
     new Extend\ApiResource(Api\Resource\PageResource::class),
+
     (new Extend\SearchDriver(\Flarum\Search\Database\DatabaseSearchDriver::class))
-        ->addSearcher(\Page::class, Search\PageSearcher::class)
-        ->addFilter(Search\PageSearcher::class, Search\NoOpFilter::class)
-        ->setFulltext(Search\PageSearcher::class, Search\NoOpFilter::class),
+        ->addSearcher(Page::class, Search\PageSearcher::class),
 ];

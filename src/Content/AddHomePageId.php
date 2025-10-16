@@ -16,13 +16,14 @@ use Flarum\Settings\SettingsRepositoryInterface;
 
 class AddHomePageId
 {
-    public function __construct(protected SettingsRepositoryInterface $settings)
-    {
+    public function __construct(
+        protected SettingsRepositoryInterface $settings
+    ){
     }
 
     public function __invoke(Document $document)
     {
-        if (($id = $this->settings->get('pages_home')) != null) {
+        if (($id = $this->settings->get('pages_home')) !== null) {
             $document->payload['fof-pages.home'] = $id;
         }
     }

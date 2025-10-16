@@ -22,8 +22,12 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class Page
 {
-    public function __construct(protected Client $api, protected UrlGenerator $url, protected SettingsRepositoryInterface $settings, protected Factory $view)
-    {
+    public function __construct(
+        protected Client $api,
+        protected UrlGenerator $url,
+        protected SettingsRepositoryInterface $settings,
+        protected Factory $view
+    ) {
     }
 
     public function __invoke(Document $document, ServerRequestInterface $request)

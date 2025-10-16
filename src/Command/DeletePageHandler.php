@@ -16,8 +16,10 @@ use FoF\Pages\PageRepository;
 
 class DeletePageHandler
 {
-    public function __construct(protected PageRepository $pages, protected SettingsRepositoryInterface $settings)
-    {
+    public function __construct(
+        protected PageRepository $pages,
+        protected SettingsRepositoryInterface $settings
+    ){
     }
 
     /**

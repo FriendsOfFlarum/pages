@@ -15,11 +15,10 @@ use Flarum\User\User;
 
 class DeletePage
 {
-    /**
-     * @param int   $pageId The ID of the page to delete.
-     *                      is unused by default, but may be used by extensions.
-     */
-    public function __construct(public $pageId, public User $actor, public array $data = [])
-    {
+    public function __construct(
+        public $pageId, 
+        public User $actor, 
+        public array $data = []
+    ) {
     }
 }
