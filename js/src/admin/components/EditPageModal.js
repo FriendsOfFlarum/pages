@@ -1,4 +1,5 @@
-import Modal from 'flarum/common/components/Modal';
+import Form from 'flarum/common/components/Form';
+import FormModal from 'flarum/common/components/FormModal';
 import Button from 'flarum/common/components/Button';
 import { slug } from 'flarum/common/utils/string';
 import Stream from 'flarum/common/utils/Stream';
@@ -9,7 +10,7 @@ import setRouteWithForcedRefresh from 'flarum/common/utils/setRouteWithForcedRef
  * The `EditPageModal` component shows a modal dialog which allows the user
  * to create or edit a page.
  */
-export default class EditPageModal extends Modal {
+export default class EditPageModal extends FormModal {
   oninit(vnode) {
     super.oninit(vnode);
 
@@ -35,7 +36,7 @@ export default class EditPageModal extends Modal {
   content() {
     return (
       <div className="Modal-body">
-        <div className="Form">
+        <Form>
           <div className="Form-group">
             <label>{app.translator.trans('fof-pages.admin.edit_page.title_label')}</label>
             <input
@@ -48,7 +49,6 @@ export default class EditPageModal extends Modal {
               }}
             />
           </div>
-
           <div className="Form-group">
             <label>{app.translator.trans('fof-pages.admin.edit_page.slug_label')}</label>
             <input
@@ -60,7 +60,6 @@ export default class EditPageModal extends Modal {
               }}
             />
           </div>
-
           <div className="Form-group">
             <label>{app.translator.trans('fof-pages.admin.edit_page.content_label')}</label>
             <textarea
@@ -71,7 +70,6 @@ export default class EditPageModal extends Modal {
               placeholder={app.translator.trans('fof-pages.admin.edit_page.content_placeholder')}
             />
           </div>
-
           <div className="Form-group">
             <div>
               <label className="checkbox">
@@ -80,7 +78,6 @@ export default class EditPageModal extends Modal {
               </label>
             </div>
           </div>
-
           <div className="Form-group">
             <div>
               <label className="checkbox">
@@ -89,7 +86,6 @@ export default class EditPageModal extends Modal {
               </label>
             </div>
           </div>
-
           <div className="Form-group">
             <div>
               <label className="checkbox">
@@ -98,7 +94,6 @@ export default class EditPageModal extends Modal {
               </label>
             </div>
           </div>
-
           <div className="Form-group">
             {Button.component(
               {
@@ -116,7 +111,7 @@ export default class EditPageModal extends Modal {
               ''
             )}
           </div>
-        </div>
+        </Form>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import addPageHomePageOption from './addPageHomePageOption';
 app.initializers.add('fof-pages', (app) => {
   app.store.models.pages = Page;
 
-  app.extensionData
+  app.registry
     .for('fof-pages')
     .registerPage(PagesPage)
     .registerPermission(
