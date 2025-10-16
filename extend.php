@@ -41,13 +41,11 @@ return [
     (new Extend\ModelVisibility(Page::class))
         ->scope(Access\ScopePageVisibility::class),
 
-    (new Extend\Filter(Search\PageFilterer::class))
-        ->addFilter(Search\NoOpGambit::class),
-
-    (new Extend\SimpleFlarumSearch(Search\PageSearcher::class))
-        ->setFullTextGambit(Search\NoOpGambit::class),
-
     (new Extend\ServiceProvider())
         ->register(Providers\PageServiceProvider::class),
     new Extend\ApiResource(Api\Resource\PageResource::class),
+    (new Extend\SearchDriver(\Flarum\Search\Database\DatabaseSearchDriver::class))
+        ->addSearcher(\Page::class, Search\PageSearcher::class)
+        ->addFilter(Search\PageSearcher::class, Search\NoOpFilter::class)
+        ->setFulltext(Search\PageSearcher::class, Search\NoOpFilter::class),
 ];

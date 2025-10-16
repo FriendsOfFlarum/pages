@@ -11,7 +11,7 @@
 
 namespace FoF\Pages\Search;
 
-use Flarum\Search\AbstractSearcher;
+use Flarum\Search\Database\AbstractSearcher;
 use Flarum\Search\GambitManager;
 use Flarum\User\User;
 use FoF\Pages\PageRepository;

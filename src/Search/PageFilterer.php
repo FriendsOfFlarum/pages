@@ -11,7 +11,7 @@
 
 namespace FoF\Pages\Search;
 
-use Flarum\Filter\AbstractFilterer;
+use Flarum\Search\Filter\AbstractFilterer;
 use Flarum\User\User;
 use FoF\Pages\PageRepository;
 use Illuminate\Database\Eloquent\Builder;

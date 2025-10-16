@@ -13,7 +13,7 @@ namespace FoF\Pages\Api\Controller;
 
 use Flarum\Api\Controller\AbstractListController;
 use Flarum\Http\UrlGenerator;
-use Flarum\Query\QueryCriteria;
+use Flarum\Search\SearchCriteria;
 use FoF\Pages\Api\Serializer\PageSerializer;
 use FoF\Pages\Search\PageFilterer;
 use FoF\Pages\Search\PageSearcher;
@@ -60,7 +60,7 @@ class ListPagesController extends AbstractListController
         $offset = $this->extractOffset($request);
         $include = $this->extractInclude($request);
 
-        $criteria = new QueryCriteria($actor, $filters, $sort);
+        $criteria = new SearchCriteria($actor, $filters, $sort);
         if (array_key_exists('q', $filters)) {
             $results = $this->searcher->search($criteria, $limit, $offset);
         } else {
