@@ -20,7 +20,7 @@ class Html
         if (empty($html)) {
             return '';
         }
-        
+
         if (strpos($html, '@include(') !== false) {
             $html = preg_replace_callback(
                 '/\@include\([\"\']?([\.\/\w\s]+)[\"\']?\)/mi',

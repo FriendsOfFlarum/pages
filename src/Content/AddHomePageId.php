@@ -18,7 +18,7 @@ class AddHomePageId
 {
     public function __construct(
         protected SettingsRepositoryInterface $settings
-    ){
+    ) {
     }
 
     public function __invoke(Document $document)
