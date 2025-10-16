@@ -34,6 +34,7 @@ class Html
                     $path = realpath($path);
                     if (!empty($path) && strpos($path, $base) === 0 && is_readable($path)) {
                         $view = resolve('view')->file($path);
+                        /** @phpstan-ignore-next-line */
                         $view->page = $page;
 
                         return $view->render();

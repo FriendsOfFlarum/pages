@@ -33,14 +33,8 @@ class Page extends AbstractModel
     use ScopeVisibilityTrait;
     use HasFactory;
 
-    /**
-     * {@inheritdoc}
-     */
     protected $table = 'pages';
 
-    /**
-     * @var array
-     */
     protected $casts = [
         'id'            => 'integer',
         'is_hidden'     => 'boolean',
