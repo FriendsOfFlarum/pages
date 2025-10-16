@@ -19,16 +19,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PageSearcher extends AbstractSearcher
 {
-    /**
-     * @var PageRepository
-     */
-    protected $pages;
-
-    public function __construct(GambitManager $gambits, array $searchMutators, PageRepository $pages)
+    public function __construct(GambitManager $gambits, array $searchMutators, protected PageRepository $pages)
     {
         parent::__construct($gambits, $searchMutators);
-
-        $this->pages = $pages;
     }
 
     protected function getQuery(User $actor): Builder

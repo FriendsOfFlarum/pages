@@ -18,16 +18,9 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PageFilterer extends AbstractFilterer
 {
-    /**
-     * @var PageRepository
-     */
-    protected $pages;
-
-    public function __construct(array $filters, array $filterMutators, PageRepository $pages)
+    public function __construct(array $filters, array $filterMutators, protected PageRepository $pages)
     {
         parent::__construct($filters, $filterMutators);
-
-        $this->pages = $pages;
     }
 
     protected function getQuery(User $actor): Builder

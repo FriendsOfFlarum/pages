@@ -37,31 +37,8 @@ class ListPagesController extends AbstractListController
      */
     public $sort = ['editTime' => 'desc'];
 
-    /**
-     * @var PageSearcher
-     */
-    protected $searcher;
-
-    /**
-     * @var PageFilterer
-     */
-    protected $filterer;
-
-    /**
-     * @var UrlGenerator
-     */
-    protected $url;
-
-    /**
-     * @param PageSearcher $searcher
-     * @param PageFilterer $filterer
-     * @param UrlGenerator $url
-     */
-    public function __construct(PageSearcher $searcher, PageFilterer $filterer, UrlGenerator $url)
+    public function __construct(protected PageSearcher $searcher, protected PageFilterer $filterer, protected UrlGenerator $url)
     {
-        $this->searcher = $searcher;
-        $this->filterer = $filterer;
-        $this->url = $url;
     }
 
     /**

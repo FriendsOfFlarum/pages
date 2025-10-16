@@ -17,17 +17,8 @@ use Illuminate\Support\Arr;
 
 class CreatePageHandler
 {
-    /**
-     * @var PageValidator
-     */
-    protected $validator;
-
-    /**
-     * @param PageValidator $validator
-     */
-    public function __construct(PageValidator $validator)
+    public function __construct(protected PageValidator $validator)
     {
-        $this->validator = $validator;
     }
 
     /**

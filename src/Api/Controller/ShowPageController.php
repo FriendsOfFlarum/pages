@@ -25,17 +25,8 @@ class ShowPageController extends AbstractShowController
      */
     public $serializer = PageSerializer::class;
 
-    /**
-     * @var PageRepository
-     */
-    protected $pages;
-
-    /**
-     * @param PageRepository $pages
-     */
-    public function __construct(PageRepository $pages)
+    public function __construct(protected PageRepository $pages)
     {
-        $this->pages = $pages;
     }
 
     /**

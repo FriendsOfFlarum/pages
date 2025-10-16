@@ -18,7 +18,7 @@ class PageValidator extends AbstractValidator
     /**
      * {@inheritdoc}
      */
-    protected $rules = [
+    protected array $rules = [
         'title' => [
             'required',
             'max:200',

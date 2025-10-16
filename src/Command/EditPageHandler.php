@@ -18,24 +18,8 @@ use Illuminate\Support\Arr;
 
 class EditPageHandler
 {
-    /**
-     * @var PageRepository
-     */
-    protected $pages;
-
-    /**
-     * @var PageValidator
-     */
-    protected $validator;
-
-    /**
-     * @param PageRepository $pages
-     * @param PageValidator  $validator
-     */
-    public function __construct(PageRepository $pages, PageValidator $validator)
+    public function __construct(protected PageRepository $pages, protected PageValidator $validator)
     {
-        $this->pages = $pages;
-        $this->validator = $validator;
     }
 
     /**

@@ -44,12 +44,9 @@ class Page extends AbstractModel
         'is_hidden'     => 'boolean',
         'is_restricted' => 'boolean',
         'is_html'       => 'boolean',
+        'time' => 'datetime',
+        'edit_time' => 'datetime',
     ];
-
-    /**
-     * {@inheritdoc}
-     */
-    protected $dates = ['time', 'edit_time'];
 
     /**
      * The text formatter instance.
