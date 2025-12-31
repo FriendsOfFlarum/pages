@@ -134,7 +134,7 @@ class PageResource extends Resource\AbstractDatabaseResource
     }
 
     /**
-     * @param Page $model
+     * @param Page          $model
      * @param FlarumContext $context
      */
     public function created(object $model, Context $context): ?object
@@ -147,7 +147,7 @@ class PageResource extends Resource\AbstractDatabaseResource
     }
 
     /**
-     * @param Page $model
+     * @param Page          $model
      * @param FlarumContext $context
      */
     public function deleted(object $model, Context $context): void
