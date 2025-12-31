@@ -95,7 +95,7 @@ class PageResource extends Resource\AbstractDatabaseResource
 
             Schema\Str::make('slug')
                 ->requiredOnCreate()
-                ->unique('pages', 'slug')
+                ->unique('pages', 'slug', true)
                 ->maxLength(200)
                 ->writable(),
 
