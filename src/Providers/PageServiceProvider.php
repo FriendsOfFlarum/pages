@@ -19,7 +19,7 @@ use FoF\Pages\Page;
 
 class PageServiceProvider extends AbstractServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->container->instance('path.pages', $this->container->make(Paths::class)->base.DIRECTORY_SEPARATOR.'pages');
 

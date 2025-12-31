@@ -30,7 +30,7 @@ class Page
     ) {
     }
 
-    public function __invoke(Document $document, ServerRequestInterface $request)
+    public function __invoke(Document $document, ServerRequestInterface $request): void
     {
         $queryParams = $request->getQueryParams();
 
@@ -45,7 +45,7 @@ class Page
         $document->payload['apiDocument'] = $apiDocument;
     }
 
-    private function getApiDocument(ServerRequestInterface $request, $id)
+    private function getApiDocument(ServerRequestInterface $request, int|string|null $id): object
     {
         $response = $this->api->withParentRequest($request)->get('/pages/'.$id);
 

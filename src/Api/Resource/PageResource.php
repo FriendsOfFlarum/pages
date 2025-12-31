@@ -48,11 +48,17 @@ class PageResource extends Resource\AbstractDatabaseResource
         return Page::class;
     }
 
+    /**
+     * @param FlarumContext $context
+     */
     public function scope(Builder $query, Context $context): void
     {
         $query->whereVisibleTo($context->getActor());
     }
 
+    /**
+     * @param FlarumContext $context
+     */
     public function find(string $id, Context $context): ?object
     {
         return $this->pages->findOrFail((int) $id, $context->getActor());
@@ -127,8 +133,11 @@ class PageResource extends Resource\AbstractDatabaseResource
         ];
     }
 
-    /** @param Page $model */
-    public function created($model, Context $context): ?object
+    /**
+     * @param Page          $model
+     * @param FlarumContext $context
+     */
+    public function created(object $model, Context $context): ?object
     {
         $this->events->dispatch(
             new PageCreated($model, $context->getActor())
@@ -137,6 +146,10 @@ class PageResource extends Resource\AbstractDatabaseResource
         return parent::created($model, $context);
     }
 
+    /**
+     * @param Page          $model
+     * @param FlarumContext $context
+     */
     public function deleted(object $model, Context $context): void
     {
         $this->events->dispatch(

@@ -80,7 +80,7 @@ class Page extends AbstractModel
      *
      * @param string $value
      */
-    public function setContentAttribute($value)
+    public function setContentAttribute($value): void
     {
         $this->attributes['content'] = $value ? static::$formatter->parse($value, $this) : null;
     }
@@ -114,7 +114,7 @@ class Page extends AbstractModel
      *
      * @param \Flarum\Formatter\Formatter $formatter
      */
-    public static function setFormatter(Formatter $formatter)
+    public static function setFormatter(Formatter $formatter): void
     {
         static::$formatter = $formatter;
     }

@@ -16,7 +16,7 @@ use Flarum\User\User;
 class DeletePage
 {
     public function __construct(
-        public $pageId,
+        public int|string $pageId,
         public User $actor,
         public array $data = []
     ) {
