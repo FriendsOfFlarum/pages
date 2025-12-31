@@ -11,7 +11,9 @@ export default class Page extends Model {
   updatedAt = Model.attribute('updatedAt', Model.transformDate);
   content = Model.attribute('content');
   contentHtml = Model.attribute('contentHtml');
-  contentPlain = computed('contentHtml', getPlainContent);
+  contentPlain = computed('contentHtml', function (this: Page, contentHtml: unknown) {
+    return getPlainContent(contentHtml as string);
+  });
   slug = Model.attribute('slug');
   isHidden = Model.attribute('isHidden');
   isRestricted = Model.attribute('isRestricted');
