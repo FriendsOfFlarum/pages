@@ -21,7 +21,7 @@ class AddHomePageId
     ) {
     }
 
-    public function __invoke(Document $document)
+    public function __invoke(Document $document): void
     {
         if (($id = $this->settings->get('pages_home')) !== null) {
             $document->payload['fof-pages.home'] = $id;

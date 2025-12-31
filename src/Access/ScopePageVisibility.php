@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ScopePageVisibility
 {
-    public function __invoke(User $actor, Builder $query)
+    public function __invoke(User $actor, Builder $query): void
     {
         if (!$actor->hasPermission('fof-pages.viewHidden')) {
             $query->where('is_hidden', false);
