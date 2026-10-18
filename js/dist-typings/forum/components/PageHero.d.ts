@@ -5,9 +5,8 @@
  *
  * - `page`
  */
-export default class PageHero extends Component<any, undefined> {
+export default class PageHero extends Hero<any> {
     constructor();
-    view(): JSX.Element;
     /**
      * Build an item list for the contents of the page hero.
      *
@@ -15,5 +14,5 @@ export default class PageHero extends Component<any, undefined> {
      */
     items(): ItemList<any>;
 }
-import Component from "flarum/common/Component";
+import Hero from "flarum/forum/components/Hero";
 import ItemList from "flarum/common/utils/ItemList";

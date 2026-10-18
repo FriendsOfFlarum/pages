@@ -2,6 +2,7 @@
  * ### Props
  *
  * - `page`
+ * - `onchange` called after the page is saved or deleted
  */
 export default class PagesListItem extends Component<any, undefined> {
     constructor();
