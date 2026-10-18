@@ -67,7 +67,7 @@ export default class EditPageModal extends FormModal {
               className="FormControl"
               rows="5"
               value={this.pageContent()}
-              onchange={withAttr('value', this.pageContent)}
+              oninput={withAttr('value', this.pageContent)}
               placeholder={app.translator.trans('fof-pages.admin.edit_page.content_placeholder')}
             />
           </div>
