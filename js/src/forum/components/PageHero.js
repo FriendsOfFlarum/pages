@@ -1,5 +1,5 @@
 import app from 'flarum/common/app';
-import Component from 'flarum/common/Component';
+import Hero from 'flarum/forum/components/Hero';
 import Link from 'flarum/common/components/Link';
 import ItemList from 'flarum/common/utils/ItemList';
 import listItems from 'flarum/common/helpers/listItems';
@@ -11,15 +11,17 @@ import listItems from 'flarum/common/helpers/listItems';
  *
  * - `page`
  */
-export default class PageHero extends Component {
-  view() {
-    return (
-      <header className="Hero PageHero">
-        <div className="container">
-          <ul className="PageHero-items">{listItems(this.items().toArray())}</ul>
-        </div>
-      </header>
-    );
+export default class PageHero extends Hero {
+  className() {
+    return 'PageHero';
+  }
+
+  bodyItems() {
+    const items = new ItemList();
+
+    items.add('items', <ul className="PageHero-items">{listItems(this.items().toArray())}</ul>, 100);
+
+    return items;
   }
 
   /**
