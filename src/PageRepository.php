@@ -13,7 +13,7 @@ namespace FoF\Pages;
 
 use Flarum\User\Guest;
 use Flarum\User\User;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PageRepository
 {
@@ -28,24 +28,36 @@ class PageRepository
     }
 
     /**
-     * Find a page by ID.
+     * Find a page by ID, by slug, or by the `{id}-{slug}` the forum links to.
      *
-     * @param int  $id
-     * @param User $user
+     * @param int|string $id
+     * @param User       $user
      *
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @throws ModelNotFoundException
      *
      * @return Page
      */
     public function findOrFail($id, ?User $user = null)
     {
-        return Page::query()
+        $id = (string) $id;
+
+        $query = Page::query()
             // We never pass a null $user from our own code, but third-party extensions
             // like v17development/flarum-seo do it so we must allow null for backward compatibility
-            ->whereVisibleTo($user ?? new Guest())
-            ->where(function (Builder $builder) use ($id) {
-                $builder->where('id', $id)->orWhere('slug', $id);
-            })
-            ->firstOrFail();
+            ->whereVisibleTo($user ?? new Guest());
+
+        $bySlug = fn () => (clone $query)->where('slug', $id)->first();
+        $byId = fn () => preg_match('/^(\d+)(?:-|$)/', $id, $matches)
+            ? (clone $query)->where('id', (int) $matches[1])->first()
+            : null;
+
+        // A bare number is an ID. Anything else is a slug, unless no page has it as one.
+        $page = ctype_digit($id) ? ($byId() ?? $bySlug()) : ($bySlug() ?? $byId());
+
+        if (!$page) {
+            throw (new ModelNotFoundException())->setModel(Page::class, [$id]);
+        }
+
+        return $page;
     }
 }

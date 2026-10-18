@@ -59,7 +59,7 @@ class PageResource extends Resource\AbstractDatabaseResource
      */
     public function find(string $id, Context $context): ?object
     {
-        return $this->pages->findOrFail((int) $id, $context->getActor());
+        return $this->pages->findOrFail($id, $context->getActor());
     }
 
     public function endpoints(): array
