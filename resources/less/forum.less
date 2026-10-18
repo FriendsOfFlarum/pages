@@ -13,7 +13,7 @@
   }
   .PageHero-title {
     > a {
-      //color: @hero-color;
+      color: inherit;
     }
     display: inline;
     vertical-align: middle;
@@ -21,7 +21,6 @@
 
 
   .Pages-container {
-    max-width: 820px;
     white-space: pre-wrap;
   }
 
@@ -29,5 +28,21 @@
     .Post-body {
       white-space: normal;
     }
+  }
+}
+
+.PagePage {
+  .Page-container {
+    max-width: 820px;
+  }
+
+  // PageStructure always renders a sidebar column; pages have no sidebar.
+  .Page-sidebar {
+    display: none;
+  }
+
+  // The hero's bottom margin already spaces the content.
+  .Page-content {
+    margin-top: 0;
   }
 }

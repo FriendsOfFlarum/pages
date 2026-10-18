@@ -1,5 +1,6 @@
+import app from 'flarum/forum/app';
 import IndexPage from 'flarum/forum/components/IndexPage';
-import Icon from 'flarum/common/components/Icon';
+import extractText from 'flarum/common/utils/extractText';
 
 import PagePage from './PagePage';
 
@@ -7,9 +8,7 @@ export default class HomePage extends PagePage {
   oninit(vnode) {
     super.oninit(vnode);
 
-    app.history.push('homePage', <Icon name="fas fa-home" />);
-    app.drawer.hide();
-    app.modal.close();
+    app.history.push('homePage', extractText(app.translator.trans('core.forum.header.back_to_index_tooltip')));
   }
 
   show(page) {
@@ -23,6 +22,6 @@ export default class HomePage extends PagePage {
   }
 
   id() {
-    return app.data['fof-pages.home'];
+    return app.forum.attribute('fofPagesHome');
   }
 }

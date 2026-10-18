@@ -4,9 +4,6 @@
   .container {
     max-width: 600px;
   }
-  p {
-    margin-bottom: 20px;
-  }
   .Button {
     margin-right: 10px;
   }
@@ -16,10 +13,6 @@
   padding-top: 20px;
   .container {
     max-width: 700px;
-  }
-
-  .Button.hasIcon i {
-    margin-right: 0;
   }
 }
 
@@ -44,13 +37,7 @@
         border-top: 1px solid var(--control-bg);
       }
       &:nth-of-type(odd) {
-        // .fof-pages-table-background(@config-dark-mode); /* @TODO: use [data-theme^=dark] and [data-theme^=light] instead */
-        .fof-pages-table-background(false) {
-          background-color: #fcfcfc;
-        }
-        .fof-pages-table-background(true) {
-          background-color: rgba(255, 255, 255, 0.05);
-        }
+        background: var(--control-body-bg-mix);
       }
     }
   }
@@ -59,24 +46,16 @@
   }
 }
 
-.EditPageModal {
-  .Form-group:not(:last-child) {
-    margin-bottom: 30px;
-  }
-}
-
 .EditPageModal-delete {
-  float: right;
+  margin-inline-start: auto;
 }
 
 .PageList-pagination {
+  display: flex;
+  justify-content: space-between;
   margin-top: 25px;
 }
 
-.Button--PageList-prev {
-  float: left;
-}
-
 .Button--PageList-next {
-  float: right;
+  margin-inline-start: auto;
 }

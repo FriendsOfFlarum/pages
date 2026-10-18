@@ -1,5 +1,6 @@
+import app from 'flarum/forum/app';
 import Page from 'flarum/common/components/Page';
-import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
+import PageStructure from 'flarum/forum/components/PageStructure';
 import classList from 'flarum/common/utils/classList';
 
 import PageHero from './PageHero';
@@ -25,16 +26,13 @@ export default class PagePage extends Page {
 
     return (
       <div className={classList('Pages', page?.isHtml() && 'Pages--isHtml')} data-id={page?.id()} data-slug={page?.slug()}>
-        <div className="Pages-page">
-          {page
-            ? [
-                this.hero(),
-                <div className="Pages-container container">
-                  <div className="Post-body">{this.content()}</div>
-                </div>,
-              ]
-            : LoadingIndicator.component({ className: 'LoadingIndicator--block' })}
-        </div>
+        <PageStructure className="PagePage" hero={() => this.hero()} loading={!page}>
+          {page && (
+            <div className="Pages-container">
+              <div className="Post-body">{this.content()}</div>
+            </div>
+          )}
+        </PageStructure>
       </div>
     );
   }

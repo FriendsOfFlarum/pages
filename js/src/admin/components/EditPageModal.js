@@ -1,10 +1,10 @@
+import app from 'flarum/admin/app';
 import Form from 'flarum/common/components/Form';
 import FormModal from 'flarum/common/components/FormModal';
 import Button from 'flarum/common/components/Button';
 import { slug } from 'flarum/common/utils/string';
 import Stream from 'flarum/common/utils/Stream';
 import withAttr from 'flarum/common/utils/withAttr';
-import setRouteWithForcedRefresh from 'flarum/common/utils/setRouteWithForcedRefresh';
 
 /**
  * The `EditPageModal` component shows a modal dialog which allows the user
@@ -66,7 +66,7 @@ export default class EditPageModal extends FormModal {
               className="FormControl"
               rows="5"
               value={this.pageContent()}
-              onchange={withAttr('value', this.pageContent)}
+              oninput={withAttr('value', this.pageContent)}
               placeholder={app.translator.trans('fof-pages.admin.edit_page.content_placeholder')}
             />
           </div>
@@ -94,7 +94,7 @@ export default class EditPageModal extends FormModal {
               </label>
             </div>
           </div>
-          <div className="Form-group">
+          <div className="Form-group Form-controls">
             {Button.component(
               {
                 type: 'submit',
@@ -142,13 +142,13 @@ export default class EditPageModal extends FormModal {
 
   hideAndRefresh() {
     this.hide();
-    setRouteWithForcedRefresh(app.route('extension', { id: 'fof-pages' }));
+    this.attrs.onchange?.();
   }
 
   delete() {
-    this.loading = true;
-
     if (confirm(app.translator.trans('fof-pages.admin.edit_page.delete_page_confirmation'))) {
+      this.loading = true;
+
       this.page
         .delete()
         .then(this.hideAndRefresh.bind(this))

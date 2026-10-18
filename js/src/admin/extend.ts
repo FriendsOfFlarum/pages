@@ -1,9 +1,12 @@
 import app from 'flarum/admin/app';
 import Extend from 'flarum/common/extenders';
 import PagesPage from './components/PagesPage';
-import Page from '../common/models/Page';
+
+import commonExtend from '../common/extend';
 
 export default [
+  ...commonExtend,
+
   new Extend.Admin() //
     .page(PagesPage) //
     .permission(
@@ -14,7 +17,4 @@ export default [
       }),
       'view'
     ),
-
-  new Extend.Store() //
-    .add('pages', Page),
 ];

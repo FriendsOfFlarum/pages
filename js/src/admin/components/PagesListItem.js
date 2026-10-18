@@ -1,8 +1,8 @@
+import app from 'flarum/admin/app';
 import Button from 'flarum/common/components/Button';
 import Component from 'flarum/common/Component';
 import saveSettings from 'flarum/admin/utils/saveSettings';
 import listItems from 'flarum/common/helpers/listItems';
-import setRouteWithForcedRefresh from 'flarum/common/utils/setRouteWithForcedRefresh';
 
 import EditPageModal from './EditPageModal';
 
@@ -10,6 +10,7 @@ import EditPageModal from './EditPageModal';
  * ### Props
  *
  * - `page`
+ * - `onchange` called after the page is saved or deleted
  */
 export default class PagesListItem extends Component {
   view() {
@@ -27,7 +28,7 @@ export default class PagesListItem extends Component {
             {Button.component({
               className: 'Button Button--page-edit',
               icon: 'fas fa-pencil-alt',
-              onclick: () => app.modal.show(EditPageModal, { page }),
+              onclick: () => app.modal.show(EditPageModal, { page, onchange: this.attrs.onchange }),
             })}
             {Button.component({
               className: 'Button Button--page-edit',
@@ -73,9 +74,7 @@ export default class PagesListItem extends Component {
   delete() {
     if (confirm(app.translator.trans('fof-pages.admin.edit_page.delete_page_confirmation'))) {
       const page = this.attrs.page;
-      page.delete().then(() => {
-        setRouteWithForcedRefresh(app.route('extension', { id: 'fof-pages' }));
-      });
+      page.delete().then(() => this.attrs.onchange?.());
     }
   }
 }

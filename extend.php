@@ -24,8 +24,10 @@ return [
         ->css(__DIR__.'/resources/less/forum.less')
         ->js(__DIR__.'/js/dist/forum.js')
         ->route('/pages/home', 'pages.home')
-        ->route('/p/{id:[\d\S]+(?:-[^/]*)?}', 'pages.page', Content\Page::class)
-        ->content(Content\AddHomePageId::class),
+        ->route('/p/{id:[\d\S]+(?:-[^/]*)?}', 'pages.page', Content\Page::class),
+
+    (new Extend\Settings())
+        ->serializeToForum('fofPagesHome', 'pages_home'),
 
     (new Extend\View())
         ->namespace('fof-pages', __DIR__.'/resources/views'),
