@@ -16,15 +16,13 @@ use Flarum\Api\Endpoint;
 use Flarum\Api\Resource;
 use Flarum\Api\Schema;
 use Flarum\Api\Sort\SortColumn;
-use Flarum\Bus\Dispatcher;
-use FoF\Pages\Command\DeletePage;
+use Flarum\Settings\SettingsRepositoryInterface;
 use FoF\Pages\Events\PageCreated;
 use FoF\Pages\Events\PageDeleted;
 use FoF\Pages\Page;
 use FoF\Pages\PageRepository;
 use FoF\Pages\Util\Html;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Arr;
 use Tobyz\JsonApiServer\Context;
 
 /**
@@ -33,8 +31,8 @@ use Tobyz\JsonApiServer\Context;
 class PageResource extends Resource\AbstractDatabaseResource
 {
     public function __construct(
-        protected Dispatcher $bus,
-        protected PageRepository $pages
+        protected PageRepository $pages,
+        protected SettingsRepositoryInterface $settings
     ) {
     }
 
@@ -74,14 +72,8 @@ class PageResource extends Resource\AbstractDatabaseResource
                 ->authenticated()
                 ->admin(),
             Endpoint\Delete::make()
-                ->action(function (FlarumContext $context) {
-                    $attributes = $context->request->getAttributes();
-                    $pageId = Arr::get($attributes, 'routeParameters.id');
-
-                    $this->bus->dispatch(
-                        new DeletePage($pageId, $context->getActor())
-                    );
-                }),
+                ->authenticated()
+                ->admin(),
             Endpoint\Show::make(),
             Endpoint\Index::make()
                 ->defaultSort('-createdAt')
@@ -156,6 +148,15 @@ class PageResource extends Resource\AbstractDatabaseResource
      */
     public function deleted(object $model, Context $context): void
     {
+        // Don't leave the forum's home page pointing at a page that no longer exists.
+        if ((int) $this->settings->get('pages_home') === $model->id) {
+            $this->settings->delete('pages_home');
+
+            if ($this->settings->get('default_route') === '/pages/home') {
+                $this->settings->set('default_route', '/all');
+            }
+        }
+
         $this->events->dispatch(
             new PageDeleted($model, $context->getActor())
         );
