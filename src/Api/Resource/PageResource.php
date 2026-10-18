@@ -67,8 +67,12 @@ class PageResource extends Resource\AbstractDatabaseResource
     public function endpoints(): array
     {
         return [
-            Endpoint\Create::make(),
-            Endpoint\Update::make(),
+            Endpoint\Create::make()
+                ->authenticated()
+                ->admin(),
+            Endpoint\Update::make()
+                ->authenticated()
+                ->admin(),
             Endpoint\Delete::make()
                 ->action(function (FlarumContext $context) {
                     $attributes = $context->request->getAttributes();
