@@ -5,3 +5,5 @@ vendor
 composer.lock
 js/dist
 coverage-ts
+.phpunit.cache
+tests/integration/tmp
