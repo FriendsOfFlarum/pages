@@ -1,3 +1,4 @@
+import app from 'flarum/admin/app';
 import Component from 'flarum/common/Component';
 import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 import Placeholder from 'flarum/common/components/Placeholder';
@@ -87,8 +88,8 @@ export default class PagesList extends Component {
           </tbody>
         </table>
         <div className="PageList-pagination">
-          {next}
           {prev}
+          {next}
         </div>
       </div>
     );

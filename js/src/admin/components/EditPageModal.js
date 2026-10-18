@@ -1,3 +1,4 @@
+import app from 'flarum/admin/app';
 import Form from 'flarum/common/components/Form';
 import FormModal from 'flarum/common/components/FormModal';
 import Button from 'flarum/common/components/Button';
@@ -94,7 +95,7 @@ export default class EditPageModal extends FormModal {
               </label>
             </div>
           </div>
-          <div className="Form-group">
+          <div className="Form-group Form-controls">
             {Button.component(
               {
                 type: 'submit',
@@ -146,9 +147,9 @@ export default class EditPageModal extends FormModal {
   }
 
   delete() {
-    this.loading = true;
-
     if (confirm(app.translator.trans('fof-pages.admin.edit_page.delete_page_confirmation'))) {
+      this.loading = true;
+
       this.page
         .delete()
         .then(this.hideAndRefresh.bind(this))
