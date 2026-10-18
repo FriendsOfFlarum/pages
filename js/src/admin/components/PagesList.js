@@ -83,7 +83,7 @@ export default class PagesList extends Component {
           </thead>
           <tbody>
             {this.pages.map((page) => {
-              return PagesListItem.component({ page });
+              return PagesListItem.component({ page, onchange: this.attrs.onchange });
             })}
           </tbody>
         </table>

@@ -5,7 +5,6 @@ import Button from 'flarum/common/components/Button';
 import { slug } from 'flarum/common/utils/string';
 import Stream from 'flarum/common/utils/Stream';
 import withAttr from 'flarum/common/utils/withAttr';
-import setRouteWithForcedRefresh from 'flarum/common/utils/setRouteWithForcedRefresh';
 
 /**
  * The `EditPageModal` component shows a modal dialog which allows the user
@@ -143,7 +142,7 @@ export default class EditPageModal extends FormModal {
 
   hideAndRefresh() {
     this.hide();
-    setRouteWithForcedRefresh(app.route('extension', { id: 'fof-pages' }));
+    this.attrs.onchange?.();
   }
 
   delete() {
