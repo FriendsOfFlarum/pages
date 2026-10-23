@@ -11,4 +11,4 @@ export default class PagesListItem extends Component<any, undefined> {
     loading: boolean | undefined;
     delete(): void;
 }
-import Component from "flarum/common/Component";
+import Component from 'flarum/common/Component';

@@ -3,4 +3,4 @@ export default class HomePage extends PagePage {
     hero(): JSX.Element;
     id(): unknown;
 }
-import PagePage from "./PagePage";
+import PagePage from './PagePage';

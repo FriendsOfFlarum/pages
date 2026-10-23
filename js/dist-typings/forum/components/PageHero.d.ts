@@ -14,5 +14,5 @@ export default class PageHero extends Hero<any> {
      */
     items(): ItemList<any>;
 }
-import Hero from "flarum/forum/components/Hero";
-import ItemList from "flarum/common/utils/ItemList";
+import Hero from 'flarum/forum/components/Hero';
+import ItemList from 'flarum/common/utils/ItemList';

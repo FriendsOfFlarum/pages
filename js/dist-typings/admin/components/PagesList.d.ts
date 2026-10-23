@@ -16,19 +16,19 @@ export default class PagesList extends Component<any, undefined> {
      *
      * @type {Page}
      */
-    pages: any;
+    pages: Page;
     /**
      * Current page number.
      *
      * @type {Integer}
      */
-    page: any;
+    page: Integer;
     /**
      * The number of activity items to load per request.
      *
      * @type {Integer}
      */
-    loadLimit: any;
+    loadLimit: Integer;
     view(): any;
     /**
      * @public
@@ -63,4 +63,4 @@ export default class PagesList extends Component<any, undefined> {
     nextResults: boolean | undefined;
     prevResults: boolean | undefined;
 }
-import Component from "flarum/common/Component";
+import Component from 'flarum/common/Component';

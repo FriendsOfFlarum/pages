@@ -6,7 +6,7 @@ export default class PagePage extends Page<import("flarum/common/components/Page
      *
      * @type {fof/pages/models/Page}
      */
-    page: any;
+    page: fof;
     view(): JSX.Element;
     /**
      * Initialize page.
@@ -35,4 +35,4 @@ export default class PagePage extends Page<import("flarum/common/components/Page
      */
     loadPage(): void;
 }
-import Page from "flarum/common/components/Page";
+import Page from 'flarum/common/components/Page';

@@ -17,4 +17,4 @@ export default class EditPageModal extends FormModal<import("flarum/common/compo
     hideAndRefresh(): void;
     delete(): void;
 }
-import FormModal from "flarum/common/components/FormModal";
+import FormModal from 'flarum/common/components/FormModal';
