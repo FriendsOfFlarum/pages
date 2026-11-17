@@ -21,18 +21,20 @@ class Html
             return '';
         }
 
-        if (strpos($html, '@include(') !== false) {
+        $base = strpos($html, '@include(') !== false ? realpath(resolve('path.pages')) : false;
+
+        if ($base !== false) {
             $html = preg_replace_callback(
                 '/\@include\([\"\']?([\.\/\w\s]+)[\"\']?\)/mi',
-                function ($matches) use ($page) {
-                    $base = resolve('path.pages');
+                function ($matches) use ($base, $page) {
                     $path = trim($matches[1], " \r\n\t\f/.");
                     $path = $base.DIRECTORY_SEPARATOR.$path;
                     if (substr($path, -4) != '.php') {
                         $path .= '.php';
                     }
                     $path = realpath($path);
-                    if (!empty($path) && strpos($path, $base) === 0 && is_readable($path)) {
+                    // The separator stops a sibling folder whose name starts with the pages folder's name from passing.
+                    if ($path !== false && str_starts_with($path, $base.DIRECTORY_SEPARATOR) && is_readable($path)) {
                         $view = resolve('view')->file($path);
                         /** @phpstan-ignore-next-line */
                         $view->page = $page;
